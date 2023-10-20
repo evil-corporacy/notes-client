@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Проект "Notes" - Альтернатива Notion
 
-## Getting Started
+Проект "Notes" представляет собой мощный инструмент для создания и управления записями, который во многом аналогичен известной платформе Notion, однако обладает несколькими интересными отличиями.
+Основные функциональные возможности
 
-First, run the development server:
+    Изменение цветов записей в зависимости от фонового изображения: Проект "Notes" позволяет пользователям выбирать фоновые изображения для своих записей, и цвета текста и элементов записи автоматически адаптируются, чтобы обеспечить лучшую читаемость.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    Бесконечное хранилище записей: Вам больше не нужно беспокоиться о нехватке места. "Notes" предоставляет бесконечное хранилище для ваших записей, а также удобные инструменты для поиска и организации информации.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    Публичные и приватные хранилища: У вас есть возможность создавать как публичные, так и приватные хранилища записей. Публичные хранилища доступны для просмотра всеми, в то время как приватные хранилища могут видеть только их создатели.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Технологический стек
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Проект "Notes" создан с использованием следующих технологий:
 
-## Learn More
+    Фронтенд:
+        Next.js - Фреймворк для реактивных веб-приложений.
+        TypeScript - Статически типизированный язык программирования.
+        Material UI - Библиотека компонентов для дизайна пользовательского интерфейса.
+        TailWind.css - Удобный CSS-фреймворк для быстрой разработки интерфейса.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    Бэкенд:
+        Python - Язык программирования.
+        Django - Мощный фреймворк для создания веб-приложений.
+        MongoDB - NoSQL база данных для хранения данных.
