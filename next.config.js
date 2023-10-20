@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const withMDX = require('@next/mdx')()
 
-module.exports = nextConfig
+const nextConfig = {
+    pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+    images: {
+        domains: ['source.unsplash.com'], // Добавьте хост "source.unsplash.com" в список доверенных хостов
+    },
+}
+
+module.exports = withMDX(nextConfig)
