@@ -1,23 +1,39 @@
 'use client'
 
-import { getRandom } from '@/features/get-random'
 import EmailIcon from '@mui/icons-material/Email'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import KeyIcon from '@mui/icons-material/Key'
 import PersonIcon from '@mui/icons-material/Person'
-import { Button, FormControl, FormLabel, Input, Typography } from '@mui/joy'
+import {Button, FormControl, FormHelperText, FormLabel, IconButton, Input, Typography} from '@mui/joy'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import nicknames from '../../../shared/data/nicknames.json'
+import {FormData} from "@/app/auth/registration/model";
+import {InfoOutlined} from "@mui/icons-material";
+import {containsCyrillic} from "@/features/contains-cyrillic";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import {useState} from "react";
+import {emailValidate} from "@/features/email-validate";
 
 const Page = () => {
 	const {
 		register,
 		handleSubmit,
 		watch,
-		formState: { errors },
 	} = useForm<FormData>()
 	const onSubmit: SubmitHandler<FormData> = (data: FormData) =>
 		console.log(data)
+	const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
+	const validations: {
+		passwordsEqual: boolean, nicknameCyrillic: boolean, mailCyrillic: boolean, passwordCyrillic: boolean, mail: boolean
+	} = {
+		passwordsEqual: watch()?.password !== watch()?.checkPassword
+			&& watch()?.password?.length >= 8
+			&& watch()?.checkPassword?.length >= 8,
+		nicknameCyrillic: containsCyrillic(watch().nickname) && watch()?.nickname?.length >= 8,
+		mailCyrillic: !emailValidate(watch().mail) && watch()?.mail?.length >= 8,
+		passwordCyrillic: containsCyrillic(watch().password),
+		mail: !emailValidate(watch().mail) && watch()?.mail?.length >= 8,
+	}
 
 	return (
 		<main className='flex justify-center items-center h-screen w-screen bg-black'>
@@ -29,12 +45,12 @@ const Page = () => {
 					Регистрация
 				</Typography>
 
-				<FormControl>
+				<FormControl error={validations.nicknameCyrillic}>
 					<FormLabel>
 						<Typography sx={{ color: 'white' }}>Никнейм</Typography>
 						<Input
 							{...register('nickname')}
-							placeholder={getRandom(nicknames)}
+							placeholder="CoolNickname123"
 							startDecorator={<PersonIcon />}
 							sx={{ width: '280px' }}
 							variant='soft'
@@ -43,7 +59,7 @@ const Page = () => {
 						/>
 					</FormLabel>
 				</FormControl>
-				<FormControl>
+				<FormControl error={validations.mailCyrillic}>
 					<FormLabel>
 						<Typography sx={{ color: 'white' }}>Почта</Typography>
 						<Input
@@ -55,32 +71,67 @@ const Page = () => {
 							size='lg'
 							required
 						/>
+						{
+							validations.mail ?
+								<FormHelperText>
+									<InfoOutlined/>
+									Это не почта
+								</FormHelperText>
+								: ""
+						}
 					</FormLabel>
 				</FormControl>
-				<FormControl>
+				<FormControl error={validations.passwordCyrillic}>
 					<FormLabel>
 						<Typography sx={{ color: 'white' }}>Пароль</Typography>
-						<Input
-							type='password'
-							startDecorator={<KeyIcon />}
-							{...register('password')}
-							sx={{ width: '280px' }}
-							variant='soft'
-							size='lg'
-						/>
+						<div className="flex">
+							<Input
+								type={passwordVisible ? 'text' : 'password'}
+								startDecorator={<KeyIcon />}
+								{...register('password')}
+								sx={{ width: '219px' }}
+								variant='soft'
+								size='lg'
+							/>
+							<IconButton variant="soft" size="lg" color="neutral" sx={{marginLeft: "15px"}} onClick={() => setPasswordVisible(!passwordVisible)}>
+								{passwordVisible ?
+									<VisibilityIcon/>
+								:
+									<VisibilityOffIcon/>
+								}
+							</IconButton>
+						</div>
 					</FormLabel>
 				</FormControl>
-				<FormControl>
+				<FormControl error={validations.passwordsEqual}>
 					<FormLabel>
 						<Typography sx={{ color: 'white' }}>Еще пароль</Typography>
-						<Input
-							type='password'
-							startDecorator={<KeyIcon />}
-							{...register('checkPassword')}
-							sx={{ width: '280px' }}
-							variant='soft'
-							size='lg'
-						/>
+						<div className="flex">
+							<Input
+								type={passwordVisible ? 'text' : 'password'}
+								startDecorator={<KeyIcon />}
+								{...register('checkPassword')}
+								sx={{ width: '219px' }}
+								variant='soft'
+								size='lg'
+							/>
+							<IconButton variant="soft" size="lg" color="neutral" sx={{marginLeft: "15px"}} onClick={() => setPasswordVisible(!passwordVisible)}>
+								{passwordVisible ?
+									<VisibilityIcon/>
+									:
+									<VisibilityOffIcon/>
+								}
+							</IconButton>
+						</div>
+						{
+							validations.passwordsEqual
+								?
+								<FormHelperText>
+									<InfoOutlined/>
+									Пароли не совпадают!
+								</FormHelperText>
+								: ""
+						}
 					</FormLabel>
 				</FormControl>
 
@@ -88,7 +139,7 @@ const Page = () => {
 					type='submit'
 					startDecorator={<ExitToAppIcon />}
 					size='lg'
-					sx={{ background: 'white', color: 'black' }}
+					color="primary"
 				>
 					Зарегистрироваться
 				</Button>
