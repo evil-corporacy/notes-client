@@ -6,9 +6,7 @@ export default function Home() {
   return (
     <main>
         <NavBar/>
-      <Container>
         <NoteContent/>
-      </Container>
     </main>
   )
 }

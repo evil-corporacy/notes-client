@@ -1,6 +1,6 @@
-export interface User {
+export interface FormData {
 	nickname: string
-	avatarURL: string
 	mail: string
 	password: string
+	checkPassword: string
 }

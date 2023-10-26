@@ -1,20 +1,20 @@
 import React from 'react';
-import NavBar from "@/widgets/nav-bar/ui";
-import {Container, Typography} from "@mui/joy";
-import Image from "next/image";
-import notes from "@/shared/data/notes";
+import {Container} from "@mui/joy";
+import data from "@/shared/data/note.json";
+import TextBlock from "@/widgets/text-block/ui";
 
 const Page = ({params}: {params: {id: string}}) => {
-    console.log(params)
-
-    const note = notes.find(item => item.id === params.id)
+    const note = data.note.content
+    const colors = data.note.colors
 
     return (
-        <main className="bg-black">
-            <NavBar/>
-            <Image width={1000} height={300} src={note?.imageUrl} alt={note?.title}/>
+        <main className={`bg-[${colors[2]}]`}>
+            {/*<NavBar/>*/}
+            {/*<Image width={1000} height={300} src={note?.imageUrl} alt={note?.title}/>*/}
             <Container>
-                <Typography level="h2">{note?.title}</Typography>
+                {note.map((block, index: number) =>
+                    <TextBlock key={index} block={block} colors={colors}/>
+                )}
             </Container>
         </main>
     );
