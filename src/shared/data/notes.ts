@@ -1,313 +1,215 @@
-import {Note} from "@/shared/interfaces";
+import {Note} from "@/entities/note/model"
 
 const notes: Note[] = [
     {
-        id: "1",
-        title: "Заголовок записи 1",
-        imageUrl: "https://source.unsplash.com/random/1",
-        content: `
-# Заголовок статьи 1
-
-Это содержание вашей записи в формате Markdown. Вы можете написать здесь о чем угодно, что вас интересует. Пример форматирования текста:
-
-- **Жирный текст**
-- *Курсив*
-- [Ссылка](https://www.example.com)
-- Списки:
-  1. Пункт 1
-  2. Пункт 2
-- Код: \`console.log('Hello, World!')\`
-    `,
+        id: "note_1",
+        imageUrl: "https://example.com/image1.jpg",
+        title: "Note 1",
+        content: "Content of Note 1",
+        starred: true,
     },
     {
-        id: "2",
-        title: "Заголовок записи 2",
-        imageUrl: "https://source.unsplash.com/random/2",
-        content: `
-# Заголовок статьи 2
-
-Ваше содержание для второй записи в формате Markdown.
-    `,
+        id: "note_2",
+        imageUrl: "https://example.com/image2.jpg",
+        title: "Note 2",
+        content: "Content of Note 2",
+        starred: false,
     },
     {
-        id: "3",
-        title: "Заголовок записи 3",
-        imageUrl: "https://source.unsplash.com/random/3",
-        content: `
-# Заголовок статьи 3
-
-Содержание третьей записи в формате Markdown.
-    `,
+        id: "note_3",
+        imageUrl: "https://example.com/image3.jpg",
+        title: "Note 3",
+        content: "Content of Note 3",
+        starred: true,
     },
     {
-        id: "4",
-        title: "Заголовок записи 4",
-        imageUrl: "https://source.unsplash.com/random/4",
-        content: `
-# Заголовок статьи 4
-
-Содержание четвертой записи в формате Markdown.
-    `,
+        id: "note_4",
+        imageUrl: "https://example.com/image4.jpg",
+        title: "Note 4",
+        content: "Content of Note 4",
+        starred: false,
     },
     {
-        id: "5",
-        title: "Заголовок записи 5",
-        imageUrl: "https://source.unsplash.com/random/5",
-        content: `
-# Заголовок статьи 5
-
-Содержание пятой записи в формате Markdown.
-    `,
+        id: "note_5",
+        imageUrl: "https://example.com/image5.jpg",
+        title: "Note 5",
+        content: "Content of Note 5",
+        starred: true,
     },
     {
-        id: "6",
-        title: "Заголовок записи 6",
-        imageUrl: "https://source.unsplash.com/random/6",
-        content: `
-# Заголовок статьи 6
-
-Содержание шестой записи в формате Markdown.
-    `,
+        id: "note_6",
+        imageUrl: "https://example.com/image6.jpg",
+        title: "Note 6",
+        content: "Content of Note 6",
+        starred: false,
     },
     {
-        id: "7",
-        title: "Заголовок записи 7",
-        imageUrl: "https://source.unsplash.com/random/7",
-        content: `
-# Заголовок статьи 7
-
-Содержание седьмой записи в формате Markdown.
-    `,
+        id: "note_7",
+        imageUrl: "https://example.com/image7.jpg",
+        title: "Note 7",
+        content: "Content of Note 7",
+        starred: true,
     },
     {
-        id: "8",
-        title: "Заголовок записи 8",
-        imageUrl: "https://source.unsplash.com/random/8",
-        content: `
-# Заголовок статьи 8
-
-Содержание восьмой записи в формате Markdown.
-    `,
+        id: "note_8",
+        imageUrl: "https://example.com/image8.jpg",
+        title: "Note 8",
+        content: "Content of Note 8",
+        starred: false,
     },
     {
-        id: "9",
-        title: "Заголовок записи 9",
-        imageUrl: "https://source.unsplash.com/random/9",
-        content: `
-# Заголовок статьи 9
-
-Содержание девятой записи в формате Markdown.
-    `,
+        id: "note_9",
+        imageUrl: "https://example.com/image9.jpg",
+        title: "Note 9",
+        content: "Content of Note 9",
+        starred: true,
     },
     {
-        id: "10",
-        title: "Заголовок записи 10",
-        imageUrl: "https://source.unsplash.com/random/10",
-        content: `
-# Заголовок статьи 10
-
-Содержание десятой записи в формате Markdown.
-    `,
+        id: "note_10",
+        imageUrl: "https://example.com/image10.jpg",
+        title: "Note 10",
+        content: "Content of Note 10",
+        starred: false,
     },
     {
-        id: "11",
-        title: "Заголовок записи 11",
-        imageUrl: "https://source.unsplash.com/random/11",
-        content: `
-# Заголовок статьи 11
-
-Содержание одиннадцатой записи в формате Markdown.
-    `,
+        id: "note_11",
+        imageUrl: "https://example.com/image11.jpg",
+        title: "Note 11",
+        content: "Content of Note 11",
+        starred: true,
     },
     {
-        id: "12",
-        title: "Заголовок записи 12",
-        imageUrl: "https://source.unsplash.com/random/12",
-        content: `
-# Заголовок статьи 12
-
-Содержание двенадцатой записи в формате Markdown.
-    `,
+        id: "note_12",
+        imageUrl: "https://example.com/image12.jpg",
+        title: "Note 12",
+        content: "Content of Note 12",
+        starred: false,
     },
     {
-        id: "13",
-        title: "Заголовок записи 13",
-        imageUrl: "https://source.unsplash.com/random/13",
-        content: `
-# Заголовок статьи 13
-
-Содержание тринадцатой записи в формате Markdown.
-    `,
+        id: "note_13",
+        imageUrl: "https://example.com/image13.jpg",
+        title: "Note 13",
+        content: "Content of Note 13",
+        starred: true,
     },
     {
-        id: "14",
-        title: "Заголовок записи 14",
-        imageUrl: "https://source.unsplash.com/random/14",
-        content: `
-# Заголовок статьи 14
-
-Содержание четырнадцатой записи в формате Markdown.
-    `,
+        id: "note_14",
+        imageUrl: "https://example.com/image14.jpg",
+        title: "Note 14",
+        content: "Content of Note 14",
+        starred: false,
     },
     {
-        id: "15",
-        title: "Заголовок записи 15",
-        imageUrl: "https://source.unsplash.com/random/15",
-        content: `
-# Заголовок статьи 15
-
-Содержание пятнадцатой записи в формате Markdown.
-    `,
+        id: "note_15",
+        imageUrl: "https://example.com/image15.jpg",
+        title: "Note 15",
+        content: "Content of Note 15",
+        starred: true,
     },
     {
-        id: "16",
-        title: "Заголовок записи 16",
-        imageUrl: "https://source.unsplash.com/random/16",
-        content: `
-# Заголовок статьи 16
-
-Содержание шестнадцатой записи в формате Markdown.
-    `,
+        id: "note_16",
+        imageUrl: "https://example.com/image16.jpg",
+        title: "Note 16",
+        content: "Content of Note 16",
+        starred: false,
     },
     {
-        id: "17",
-        title: "Заголовок записи 17",
-        imageUrl: "https://source.unsplash.com/random/17",
-        content: `
-# Заголовок статьи 17
-
-Содержание семнадцатой записи в формате Markdown.
-    `,
+        id: "note_17",
+        imageUrl: "https://example.com/image17.jpg",
+        title: "Note 17",
+        content: "Content of Note 17",
+        starred: true,
     },
     {
-        id: "18",
-        title: "Заголовок записи 18",
-        imageUrl: "https://source.unsplash.com/random/18",
-        content: `
-# Заголовок статьи 18
-
-Содержание восемнадцатой записи в формате Markdown.
-    `,
+        id: "note_18",
+        imageUrl: "https://example.com/image18.jpg",
+        title: "Note 18",
+        content: "Content of Note 18",
+        starred: false,
     },
     {
-        id: "19",
-        title: "Заголовок записи 19",
-        imageUrl: "https://source.unsplash.com/random/19",
-        content: `
-# Заголовок статьи 19
-
-Содержание девятнадцатой записи в формате Markdown.
-    `,
+        id: "note_19",
+        imageUrl: "https://example.com/image19.jpg",
+        title: "Note 19",
+        content: "Content of Note 19",
+        starred: true,
     },
     {
-        id: "20",
-        title: "Заголовок записи 20",
-        imageUrl: "https://source.unsplash.com/random/20",
-        content: `
-# Заголовок статьи 20
-
-Содержание двадцатой записи в формате Markdown.
-    `,
+        id: "note_20",
+        imageUrl: "https://example.com/image20.jpg",
+        title: "Note 20",
+        content: "Content of Note 20",
+        starred: false,
     },
     {
-        id: "21",
-        title: "Заголовок записи 21",
-        imageUrl: "https://source.unsplash.com/random/21",
-        content: `
-# Заголовок статьи 21
-
-Содержание двадцать первой записи в формате Markdown.
-    `,
+        id: "note_21",
+        imageUrl: "https://example.com/image21.jpg",
+        title: "Note 21",
+        content: "Content of Note 21",
+        starred: true,
     },
     {
-        id: "22",
-        title: "Заголовок записи 22",
-        imageUrl: "https://source.unsplash.com/random/22",
-        content: `
-# Заголовок статьи 22
-
-Содержание двадцать второй записи в формате Markdown.
-    `,
+        id: "note_22",
+        imageUrl: "https://example.com/image22.jpg",
+        title: "Note 22",
+        content: "Content of Note 22",
+        starred: false,
     },
     {
-        id: "23",
-        title: "Заголовок записи 23",
-        imageUrl: "https://source.unsplash.com/random/23",
-        content: `
-# Заголовок статьи 23
-
-Содержание двадцать третьей записи в формате Markdown.
-    `,
+        id: "note_23",
+        imageUrl: "https://example.com/image23.jpg",
+        title: "Note 23",
+        content: "Content of Note 23",
+        starred: true,
     },
     {
-        id: "24",
-        title: "Заголовок записи 24",
-        imageUrl: "https://source.unsplash.com/random/24",
-        content: `
-# Заголовок статьи 24
-
-Содержание двадцать четвертой записи в формате Markdown.
-    `,
+        id: "note_24",
+        imageUrl: "https://example.com/image24.jpg",
+        title: "Note 24",
+        content: "Content of Note 24",
+        starred: false,
     },
     {
-        id: "25",
-        title: "Заголовок записи 25",
-        imageUrl: "https://source.unsplash.com/random/25",
-        content: `
-# Заголовок статьи 25
-
-Содержание двадцать пятой записи в формате Markdown.
-    `,
+        id: "note_25",
+        imageUrl: "https://example.com/image25.jpg",
+        title: "Note 25",
+        content: "Content of Note 25",
+        starred: true,
     },
     {
-        id: "26",
-        title: "Заголовок записи 26",
-        imageUrl: "https://source.unsplash.com/random/26",
-        content: `
-# Заголовок статьи 26
-
-Содержание двадцать шестой записи в формате Markdown.
-    `,
+        id: "note_26",
+        imageUrl: "https://example.com/image26.jpg",
+        title: "Note 26",
+        content: "Content of Note 26",
+        starred: false,
     },
     {
-        id: "27",
-        title: "Заголовок записи 27",
-        imageUrl: "https://source.unsplash.com/random/27",
-        content: `
-# Заголовок статьи 27
-
-Содержание двадцать седьмой записи в формате Markdown.
-    `,
+        id: "note_27",
+        imageUrl: "https://example.com/image27.jpg",
+        title: "Note 27",
+        content: "Content of Note 27",
+        starred: true,
     },
     {
-        id: "28",
-        title: "Заголовок записи 28",
-        imageUrl: "https://source.unsplash.com/random/28",
-        content: `
-# Заголовок статьи 28
-
-Содержание двадцать восьмой записи в формате Markdown.
-    `,
+        id: "note_28",
+        imageUrl: "https://example.com/image28.jpg",
+        title: "Note 28",
+        content: "Content of Note 28",
+        starred: false,
     },
     {
-        id: "29",
-        title: "Заголовок записи 29",
-        imageUrl: "https://source.unsplash.com/random/29",
-        content: `
-# Заголовок статьи 29
-
-Содержание двадцать девятой записи в формате Markdown.
-    `,
+        id: "note_29",
+        imageUrl: "https://example.com/image29.jpg",
+        title: "Note 29",
+        content: "Content of Note 29",
+        starred: true,
     },
     {
-        id: "30",
-        title: "Заголовок записи 30",
-        imageUrl: "https://source.unsplash.com/random/30",
-        content: `
-# Заголовок статьи 30
-
-Содержание тридцатой записи в формате Markdown.
-    `,
+        id: "note_30",
+        imageUrl: "https://example.com/image30.jpg",
+        title: "Note 30",
+        content: "Content of Note 30",
+        starred: false,
     },
 ];
 

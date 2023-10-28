@@ -1,6 +1,7 @@
 import React from 'react';
 import {Avatar, Typography} from "@mui/joy";
 import {User} from "@/shared/interfaces";
+import Link from "next/link";
 
 const user: User = {
     nickname: "Леха тараканов",
@@ -11,10 +12,12 @@ const user: User = {
 
 const ProfileButton = () => {
     return (
-        <div className="flex mx-auto gap-4 justify-center bg-gray py-2 rounded-xl w-64 hover:brightness-125 duration-300 cursor-pointer">
-            <Avatar alt={user.nickname} src={user.avatarURL}/>
-            <Typography level="h4" sx={{color: 'white', display: 'flex', alignItems: 'center'}}>{user.nickname}</Typography>
-        </div>
+        <Link href="/profile">
+            <div className="flex gap-4 cursor-pointer border-2 border-black py-2 px-4 rounded-xl hover:border-gray/30 duration-300">
+                <Typography level="h4" sx={{color: 'white', display: 'flex', alignItems: 'center'}}>{user.nickname}</Typography>
+                <Avatar alt={user.nickname} src={user.avatarURL}/>
+            </div>
+        </Link>
     );
 };
 

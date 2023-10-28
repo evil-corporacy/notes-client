@@ -3,4 +3,5 @@ export interface Note {
 	imageUrl: string
 	title: string
 	content: string
+	starred: boolean
 }

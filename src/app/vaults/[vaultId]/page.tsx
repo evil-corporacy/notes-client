@@ -3,8 +3,8 @@ import TagsList from '@/widgets/tags-list/ui'
 import { Container, Typography } from '@mui/joy'
 import vaults from '../../../shared/data/vaults.json'
 
-const Page = ({ params }: { params: { id: string } }) => {
-	const vault = vaults.find(vault => (vault.id = params.id))
+const Page = ({ params }: { params: { vaultId: string } }) => {
+	const vault = vaults.find(vault => (vault.id = params.vaultId))
 
 	console.log(vault)
 	return (
@@ -18,7 +18,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 					<Typography level='h1' sx={{ color: vault?.colors[0] }}>
 						{vault?.title}
 					</Typography>
-					<TagsList tags={vault?.tags} colors={vault.colors} />
+					<TagsList tags={vault?.tags} colors={vault?.colors} />
 					<p style={{ color: vault?.colors[0] }}>{vault?.description}</p>
 				</div>
 			</Container>
