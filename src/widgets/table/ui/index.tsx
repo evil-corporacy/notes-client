@@ -17,16 +17,16 @@ const TableBlock = ({table, colors}: {table: {header: string[], body: string[] }
         <Table variant="outlined" sx={{background: "transparent", border: colors[1], color: colors[0]}}>
             <thead>
             {content.header.map((item: string, index: number) =>
-                <th style={{background: colors[1], color: colors[0]}}>
+                <th key={index} style={{background: colors[1], color: colors[0]}}>
                     <input value={item} onChange={(e) => handleHeaderChange(e, index)} className="bg-transparent p-2 rounded-xl"/>
                 </th>
             )}
             </thead>
             <tbody>
-            {content.body.map((col: string[]) =>
-                <tr>
-                    {col.map((item: string) =>
-                        <td>
+            {content.body.map((col: any, index: number) =>
+                <tr key={index}>
+                    {col.map((item: string, index: number) =>
+                        <td key={index}>
                             <input value={item} className="bg-transparent p-2 rounded-xl"/>
                         </td>
                     )}

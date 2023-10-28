@@ -1,4 +1,4 @@
-import { Vault } from '@/entities/vault/model'
+// import { Vault } from '@/entities/vault/model'
 import VaultCard from '@/entities/vault/ui'
 import { Container, Typography } from '@mui/joy'
 import vaults from '../../shared/data/vaults.json'
@@ -12,7 +12,7 @@ const Page = () => {
 						Твои волты
 					</Typography>
 					<div className='w-full flex flex-wrap gap-y-20 justify-between'>
-						{vaults.map((vault: Vault, index: number) => (
+						{vaults.map((vault, index: number) => (
 							<VaultCard key={index} vault={vault} />
 						))}
 					</div>

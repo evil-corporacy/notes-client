@@ -1,9 +1,8 @@
 import LockIcon from '@mui/icons-material/Lock'
 import { Button, IconButton, Typography } from '@mui/joy'
 import Link from 'next/link'
-import { Vault } from '../model'
 
-const VaultCard = ({ vault }: { vault: Vault }) => {
+const VaultCard = ({ vault }: { vault: any }) => {
 	return (
 		<div
 			className='relative w-80 rounded-xl h-80 p-3.5'

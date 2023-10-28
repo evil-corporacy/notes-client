@@ -1,11 +1,10 @@
 'use client'
 
-import React, {ChangeEvent, useState} from 'react';
-import {Checkbox, List, ListItem, ListItemDecorator, Textarea, Typography} from "@mui/joy";
-import {CheckBox} from "@mui/icons-material";
+import React, {useState} from 'react';
+import {Checkbox, List, ListItem, ListItemDecorator, Textarea} from "@mui/joy";
 
 const TodoList = ({list, colors}: { list: string[], colors: string[] }) => {
-    const [content, setContent] = useState<string[]>(list)
+    const [content, setContent] = useState<any>(list)
     // const handleChange = (e: ChangeEvent<HTMLInputElement>) => setContent(e.target.value)
 
     const handleChange = (e: any, index: number) => {
@@ -25,8 +24,8 @@ const TodoList = ({list, colors}: { list: string[], colors: string[] }) => {
 
     return (
         <div className={`relative py-2 px-4 rounded-xl hover:bg-${colors[0]}/30 cursor-pointer duration-300`}>
-            <List>{content.map((element: string, index: number) =>
-                <ListItem sx={{color: colors[0], position: "relative"}}>
+            <List>{content.map((element: any, index: number) =>
+                <ListItem key={index} sx={{color: colors[0], position: "relative"}}>
                     <ListItemDecorator>
                         <Checkbox
                             onChange={(e: any) => handleCheckboxChange(e, index)}

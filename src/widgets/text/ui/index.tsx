@@ -1,11 +1,11 @@
 'use client'
 
-import React, {ChangeEvent, useState} from 'react';
-import {Textarea, Typography} from "@mui/joy";
+import React, {useState} from 'react';
+import {Textarea} from "@mui/joy";
 
-const Text = ({data, colors} : {data: string, colors: string[]}) => {
+const Text = ({data, colors} : {data: any, colors: string[]}) => {
     const [content, setContent] = useState<string>(data)
-    const handleChange = (e: ChangeEvent) => setContent(e.target.value)
+    const handleChange = (e: any) => setContent(e.target.value)
 
     return (
         <Textarea

@@ -1,6 +1,6 @@
 import { Chip } from '@mui/joy'
 
-const TagsList = ({ tags, colors }: { tags: string[]; colors?: string[] }) => {
+const TagsList = ({ tags, colors }: { tags: any; colors?: string[] }) => {
 	return (
 		<div className='flex gap-2'>
 			{tags.map((tag: string, index: number) => (
