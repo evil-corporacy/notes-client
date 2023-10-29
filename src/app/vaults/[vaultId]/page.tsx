@@ -6,13 +6,12 @@ import vaults from '../../../shared/data/vaults.json'
 const Page = ({ params }: { params: { vaultId: string } }) => {
 	const vault = vaults.find(vault => (vault.id = params.vaultId))
 
-	console.log(vault)
 	return (
 		<main
 			style={{ background: vault?.colors[2] }}
 			className='h-screen w-screen'
 		>
-			<NavBar />
+			<NavBar params={params}/>
 			<Container>
 				<div className='flex flex-col gap-y-5  pt-10'>
 					<Typography level='h1' sx={{ color: vault?.colors[0] }}>
