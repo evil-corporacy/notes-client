@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from "@/widgets/logo/ui";
-// import CELogo from "../../../../public/logos/evil-corporacy-logo.svg";
+import CELogo from "../../../../public/logos/evil-corporacy-logo.svg";
 import NotesLogo from "../../../../public/logos/notes-logo.svg";
 import Link from "next/link";
 import {Container} from "@mui/joy";
@@ -16,6 +16,9 @@ const Header = () => {
                         <div className="flex gap-5">
                             <Link href="/">
                                 <Logo logo={NotesLogo}/>
+                            </Link>
+                            <Link href="/">
+                                <Logo logo={CELogo}/>
                             </Link>
                         </div>
                         <Link href="/vaults">

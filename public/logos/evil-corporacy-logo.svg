@@ -1,6 +1,8 @@
-<svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M42 21C42 9.40202 32.598 0 21 0C9.40202 0 0 9.40202 0 21C0 32.598 9.40202 42 21 42C32.598 42 42 32.598 42 21Z" fill="white"/>
-<path d="M42 12C42 5.37258 36.6274 0 30 0C23.3726 0 18 5.37258 18 12C18 18.6274 23.3726 24 30 24C36.6274 24 42 18.6274 42 12Z" fill="#636B74"/>
-<path d="M39 12C39 7.02944 34.9706 3 30 3C25.0294 3 21 7.02944 21 12C21 16.9706 25.0294 21 30 21C34.9706 21 39 16.9706 39 12Z" fill="#051423"/>
-<path d="M26.25 5.625C26.25 4.38236 25.2426 3.375 24 3.375C22.7574 3.375 21.75 4.38236 21.75 5.625C21.75 6.86764 22.7574 7.875 24 7.875C25.2426 7.875 26.25 6.86764 26.25 5.625Z" fill="white"/>
+<svg width="142" height="142" viewBox="0 0 142 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="21" y="21" width="100" height="100" rx="6" fill="white"/>
+<rect x="2.69873" y="52.6987" width="100" height="100" rx="6" transform="rotate(-30 2.69873 52.6987)" fill="white"/>
+<rect x="53" y="3" width="100" height="100" rx="6" transform="rotate(30 53 3)" fill="white"/>
+<rect x="9.76276" y="35.6447" width="100" height="100" rx="6" transform="rotate(-15 9.76276 35.6447)" fill="white"/>
+<rect x="35.9459" y="10.064" width="100" height="100" rx="6" transform="rotate(15 35.9459 10.064)" fill="white"/>
+<rect x="0.289322" y="71" width="100" height="100" rx="6" transform="rotate(-45 0.289322 71)" fill="white"/>
 </svg>
