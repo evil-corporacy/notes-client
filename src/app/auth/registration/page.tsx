@@ -13,6 +13,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {useState} from "react";
 import {emailValidate} from "@/features/email-validate";
+import Link from "next/link";
 
 const Page = () => {
 	const {
@@ -143,6 +144,8 @@ const Page = () => {
 				>
 					Зарегистрироваться
 				</Button>
+
+				<Typography level="body-lg" sx={{color: "white"}}>Есть аккаунт? <Typography color="primary"><Link href="/auth/login">Логинься!</Link></Typography></Typography>
 			</form>
 		</main>
 	)

@@ -11,7 +11,7 @@ const Page = ({ params }: { params: { vaultId: string } }) => {
 			style={{ background: vault?.colors[2] }}
 			className='h-screen w-screen'
 		>
-			<NavBar params={params}/>
+			<NavBar params={params} loading={false}/>
 			<Container>
 				<div className='flex flex-col gap-y-5  pt-10'>
 					<Typography level='h1' sx={{ color: vault?.colors[0] }}>

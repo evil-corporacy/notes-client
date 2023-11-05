@@ -4,8 +4,13 @@ import Add from '@mui/icons-material/Add';
 import notes from "@/shared/data/notes";
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
+import Loading from "@/widgets/nav-bar/ui/loading";
 
-const NavBar = ({params}: { params: { vaultId: string } }) => {
+const NavBar = ({params, loading}: { params?: { vaultId: string }, loading?: boolean }) => {
+
+
+    if (loading) return (<Loading/>)
+
     return (
         <div className="relative top-0 border-l-2">
             <div

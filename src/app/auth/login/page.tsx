@@ -11,6 +11,7 @@ import {FormData} from "./model/index"
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import {useState} from "react";
+import Link from "next/link";
 
 const Page = () => {
 	const {
@@ -73,6 +74,8 @@ const Page = () => {
 				>
 					Залогиниться
 				</Button>
+
+				<Typography level="body-lg" sx={{color: "white"}}>Нет аккаунта? <Typography color="primary"><Link href="/auth/registration">Регистрируйся!</Link></Typography></Typography>
 			</form>
 		</main>
 	)

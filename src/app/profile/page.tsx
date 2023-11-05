@@ -14,12 +14,12 @@ const Page = () => {
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
 
     return (
-        <main className="bg-black">
+        <main className="bg-black h-screen">
             <Container>
-                <div className="mt-10 flex flex-col gap-5">
+                <div className="mt-10 pt-10 flex flex-col gap-5">
                     <Typography level="h1" sx={{color: "white"}}>Настройки</Typography>
                     <Divider/>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-5">
                         <Typography level="h2" sx={{color: "white"}}>Основное</Typography>
                         <div>
                             <Typography level="h4" sx={{color: "white"}}>Никнейм</Typography>

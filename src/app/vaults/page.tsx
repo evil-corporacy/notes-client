@@ -1,14 +1,11 @@
-// import { Vault } from '@/entities/vault/model'
-import VaultCard from '@/entities/vault/ui'
 import {Button, Container, Input, Typography} from '@mui/joy'
-import vaults from '../../shared/data/vaults.json'
-import Add from "@mui/icons-material/Add";
 import React from "react";
+import {Search} from "@mui/icons-material";
+import CreateVault from "@/widgets/create-vault";
+import VaultList from "@/widgets/vault-list";
 
 const Page = () => {
     const loading = false
-
-    const emptyArray = new Array(9).fill(0)
 
     return (
         <main className='h-full w-full bg-black'>
@@ -19,20 +16,14 @@ const Page = () => {
                             Твои волты
                         </Typography>
                         <div className="flex mt-5 justify-between">
-                            <Input/>
-                            <Button startDecorator={<Add/>} variant="solid">Создать новый волт</Button>
+                            <div className="flex gap-4">
+                                <Input placeholder="Поиск" variant="soft" endDecorator={<Search/>}/>
+                                <Button>Найти</Button>
+                            </div>
+                            <CreateVault/>
                         </div>
                     </div>
-                    <div className='w-full flex flex-wrap gap-20 justify-center'>
-                        {loading ?
-                            emptyArray.map((item: undefined, index: number) =>
-                                <VaultCard key={index} loading={true}/>
-                            )
-                            :
-                            vaults.map((vault, index: number) => (
-                                <VaultCard key={index} vault={vault} loading={loading}/>
-                            ))}
-                    </div>
+                    <VaultList loading={loading}/>
                 </div>
             </Container>
         </main>
