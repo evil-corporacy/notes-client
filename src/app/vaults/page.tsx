@@ -1,4 +1,4 @@
-import {Button, Container, Input, Typography} from '@mui/joy'
+import {Button, Container, Input} from '@mui/joy'
 import React from "react";
 import {Search} from "@mui/icons-material";
 import CreateVault from "@/widgets/create-vault";
@@ -8,13 +8,11 @@ const Page = () => {
     const loading = false
 
     return (
-        <main className='h-full w-full bg-black'>
+        <main className='h-full w-full bg-black pb-10'>
             <Container>
                 <div className='my-10'>
-                    <div className="my-10 pt-10">
-                        <Typography level='h1' sx={{color: 'white'}}>
-                            Твои волты
-                        </Typography>
+                    <div className="flex flex-col gap-10 pt-10 mb-10">
+                        <h1 className="text-6xl font-bold text-white">Твои волты</h1>
                         <div className="flex mt-5 justify-between">
                             <div className="flex gap-4">
                                 <Input placeholder="Поиск" variant="soft" endDecorator={<Search/>}/>
@@ -22,8 +20,8 @@ const Page = () => {
                             </div>
                             <CreateVault/>
                         </div>
+                        <VaultList loading={loading}/>
                     </div>
-                    <VaultList loading={loading}/>
                 </div>
             </Container>
         </main>

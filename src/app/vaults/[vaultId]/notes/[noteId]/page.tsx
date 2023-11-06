@@ -21,10 +21,11 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
     const title = data.note.title
     const colors = data.note.colors
     const handleDeleteBlock = (itemToDelete: any) => {
-        let newData = [...note]
-        newData = newData.filter(item => item !== itemToDelete);
+        const newData = [...note].filter((item: any) => item !== itemToDelete);        console.log(newData)
         setNote(newData)
     }
+
+    console.log(213, note)
 
     const types = [
         {
@@ -99,7 +100,7 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
                 </div>
                 <div className="py-10 pr-96 pl-20">
                     {note.map((block: any, index: number) =>
-                        <TextBlock index={index} handleDeleteBlock={handleDeleteBlock} key={index} block={block} colors={colors}/>
+                        <TextBlock index={index} handleDeleteBlock={handleDeleteBlock} key={block} block={block} colors={colors}/>
                     )}
                     <ButtonGroup>
                         {types.map((type, index: number) => <IconButton key={index} sx={{background: colors[1], color: colors[2]}}>{type.icon}</IconButton>)}
