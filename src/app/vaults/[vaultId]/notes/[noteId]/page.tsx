@@ -25,7 +25,10 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
         setNote(newData)
     }
 
-    console.log(213, note)
+    const pasteInNote = (data) => {
+        const newData = [...note, ...data]
+        setNote(newData)
+    }
 
     const types = [
         {
@@ -93,7 +96,7 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
                         <div className="pr-96 pl-20 w-full">
                             <div className="flex justify-between">
                                 <Typography level="h1">{title}</Typography>
-                                <NoteEdit colors={colors}/>
+                                <NoteEdit pasteInNote={pasteInNote} colors={colors}/>
                             </div>
                         </div>
                     </div>
