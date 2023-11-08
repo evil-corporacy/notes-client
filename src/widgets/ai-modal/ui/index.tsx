@@ -1,17 +1,15 @@
 'use client'
 
 import React, {useState} from 'react';
-import {Button, IconButton, Input, Modal, ModalDialog, Sheet} from "@mui/joy";
+import {Button, IconButton, Input, Modal, ModalDialog, Sheet, Snackbar} from "@mui/joy";
 import SendIcon from '@mui/icons-material/Send';
 import Message from "@/widgets/message/ai";
-import {useGetChatQuery} from "@/entities/ai/api";
 import api from "@/features/axios"
-import {Snackbar} from "@mui/base";
 import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
 
 const AiModal = ({open, setOpen, pasteInNote}: { open: boolean, setOpen: any, pasteInNote: (message: any) => void }) => {
     const [question, setQuestion] = useState<string>("")
-    const [chat, setChat] = useState([])
+    const [chat, setChat] = useState<any>([])
     const [loading, setLoading] = useState<boolean>(false)
     const [snackBarData, setSnackBarData] = useState<{open: boolean, content: any}>({open: false, content: "Все хорошо"})
 
@@ -42,11 +40,8 @@ const AiModal = ({open, setOpen, pasteInNote}: { open: boolean, setOpen: any, pa
         <Modal open={open} onClose={() => setOpen(false)}>
             <ModalDialog>
                 <Snackbar
-                    variant="outlined"
-                    color="error"
                     open={snackBarData.open}
                     onClose={() => setOpen(false)}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                     startDecorator={<CloseIcon />}
                     endDecorator={
                         <Button

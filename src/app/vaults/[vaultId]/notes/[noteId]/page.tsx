@@ -25,7 +25,7 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
         setNote(newData)
     }
 
-    const pasteInNote = (data) => {
+    const pasteInNote = (data: any) => {
         const newData = [...note, ...data]
         setNote(newData)
     }

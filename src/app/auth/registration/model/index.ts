@@ -1,6 +1,6 @@
 export interface FormData {
 	nickname: string
-	mail: string
+	email: string
 	password: string
 	checkPassword: string
 }
