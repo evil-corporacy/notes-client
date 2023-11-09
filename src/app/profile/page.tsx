@@ -1,6 +1,5 @@
-'use client'
-
-import {Container, Divider, IconButton, Input, Typography} from '@mui/joy';
+"use client"
+import {Button, Container, Divider, IconButton, Input, Typography} from '@mui/joy';
 import React, {useState} from 'react';
 import profileData from "../../shared/data/profile.json"
 import KeyIcon from "@mui/icons-material/Key";
@@ -8,10 +7,23 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
+import {Save} from "@mui/icons-material";
+import {useGetMeQuery} from "@/entities/user/api";
+import {useRouter} from "next/navigation";
 
 const Page = () => {
+    const router = useRouter()
     const profile = profileData
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
+    const [canSave, setCanSave] = useState<boolean>(false)
+    const accessToken: string | null = localStorage.getItem("access")
+
+    if (!accessToken) router.replace("/auth/login")
+    console.log(accessToken)
+    // @ts-ignore
+    const {data, isLoading} = useGetMeQuery(accessToken)
+
+    console.log(data)
 
     return (
         <main className="bg-black h-screen">
@@ -23,11 +35,11 @@ const Page = () => {
                         <Typography level="h2" sx={{color: "white"}}>Основное</Typography>
                         <div>
                             <Typography level="h4" sx={{color: "white"}}>Никнейм</Typography>
-                            <Input variant="soft" startDecorator={<PersonIcon/>} size="lg" value={profile.nickname}/>
+                            <Input disabled variant="soft" startDecorator={<PersonIcon/>} size="lg" value={profile.nickname}/>
                         </div>
                         <div>
                             <Typography level="h4" sx={{color: "white"}}>E-Mail</Typography>
-                            <Input variant="soft" startDecorator={<EmailIcon/>} size="lg" value={profile.email}/>
+                            <Input disabled variant="soft" startDecorator={<EmailIcon/>} size="lg" value={profile.email}/>
                         </div>
                     </div>
                     <Divider/>
@@ -52,9 +64,11 @@ const Page = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
 
+                <div className="mt-10">
+                    <Button disabled={canSave} endDecorator={<Save/>}>Сохранить</Button>
+                </div>
             </Container>
         </main>
     );

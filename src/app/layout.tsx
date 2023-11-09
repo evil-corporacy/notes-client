@@ -5,6 +5,7 @@ import './globals.css'
 import Header from "@/widgets/header/ui";
 import Footer from "@/widgets/footer/ui";
 import ReduxProvider from "@/entities/store/ui";
+import Head from "next/head";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -20,6 +21,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang='en' className='bg-black h-screen w-screen'>
+        <Head>
+            <link rel="icon" href="../../public/favicon.ico" /> {/* Путь к вашему фавикону */}
+            <link rel="apple-touch-icon" sizes="180x180" href="../../public/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="192x192" href="../../public/android-chrome-192x192.png" />
+            <link rel="icon" type="image/png" sizes="512x512" href="../../public/android-chrome-512x512.png" />
+        </Head>
         <ThemeRegistry options={{key: 'joy'}}>
             <body className={inter.className}>
             <ReduxProvider>
