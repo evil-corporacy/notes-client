@@ -7,6 +7,7 @@ import {Container} from "@mui/joy";
 import ProfileButton from "@/widgets/profile-button/ui";
 
 const Header = () => {
+
     return (
         <header
             className="h-20 z-20 fixed top-0 right-0 bg-black/90 backdrop-blur flex border-b-2 py-6 px-20 gap-3.5 border-gray/30 items-center w-full">

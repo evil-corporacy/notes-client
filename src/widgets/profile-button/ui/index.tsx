@@ -1,22 +1,34 @@
-import React from 'react';
-import {Avatar, Typography} from "@mui/joy";
-import {User} from "@/shared/interfaces";
-import Link from "next/link";
+"use client"
 
-const user: User = {
-    nickname: "Леха тараканов",
-    avatarURL: "../../../../public/images/thispersondoesnotexist.jpg",
-    mail: "gmail@gmail.com",
-    password: "12345"
-}
+import React from 'react';
+import {Avatar, Button, CircularProgress, Typography} from "@mui/joy";
+import Link from "next/link";
+import {useGetMeQuery} from "@/entities/user/api";
+import PersonIcon from "@mui/icons-material/Person";
 
 const ProfileButton = () => {
+    const accessToken: any = typeof window !== 'undefined' ? localStorage.getItem("access") : null;
+    const {data, isLoading} = useGetMeQuery(accessToken)
+
     return (
         <Link href="/profile">
-            <div className="flex gap-4 cursor-pointer border-2 border-black py-2 px-4 rounded-xl hover:border-gray/30 duration-300">
-                <Typography level="h4" sx={{color: 'white', display: 'flex', alignItems: 'center'}}>{user.nickname}</Typography>
-                <Avatar alt={user.nickname} src={user.avatarURL}/>
-            </div>
+            {
+                data ?
+                    <div className="flex gap-4 cursor-pointer border-2 border-black py-2 px-4 rounded-xl hover:border-gray/30 duration-300">
+                        {isLoading ?
+                            <CircularProgress/>
+                            :
+                            <>
+                                <Typography level="h4"
+                                            sx={{color: 'white', display: 'flex', alignItems: 'center'}}>{data?.data.nickname}</Typography>
+                                <Avatar alt={data?.data.nickname}/>
+                            </>
+                        }
+                    </div>
+                    :
+                    <Button startDecorator={<PersonIcon/>}>Залогиниться</Button>
+            }
+
         </Link>
     );
 };
