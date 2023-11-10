@@ -1,4 +1,4 @@
-import {User} from "../model/index"
+import {UserResponse} from "../model/index"
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 
@@ -6,8 +6,8 @@ export const UserApi = createApi({
     reducerPath: "UserApi",
     baseQuery: fetchBaseQuery({baseUrl: "http://127.0.0.1:8000/api/auth/"}),
     endpoints: (builder) => ({
-        getMe: builder.query<User, string>({
-            query: (accessToken: string | null) => ({
+        getMe: builder.query<UserResponse, string>({
+            query: (accessToken: any) => ({
                 url: '/me',
                 method: "GET",
                 headers: {
@@ -15,8 +15,8 @@ export const UserApi = createApi({
                 }
             }),
         }),
-        refresh: builder.query<User, string>({
-            query: (accessToken: string | null) => ({
+        refresh: builder.query<UserResponse, string>({
+            query: (accessToken: any) => ({
                 url: '/refresh',
                 method: "PATCH",
                 headers: {

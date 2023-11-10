@@ -6,6 +6,7 @@ import Header from "@/widgets/header/ui";
 import Footer from "@/widgets/footer/ui";
 import ReduxProvider from "@/entities/store/ui";
 import Head from "next/head";
+import RefreshToken from "@/processes/refresh-token/ui";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -27,6 +28,7 @@ export default function RootLayout({
             <link rel="icon" type="image/png" sizes="192x192" href="../../public/android-chrome-192x192.png" />
             <link rel="icon" type="image/png" sizes="512x512" href="../../public/android-chrome-512x512.png" />
         </Head>
+        <RefreshToken/>
         <ThemeRegistry options={{key: 'joy'}}>
             <body className={inter.className}>
             <ReduxProvider>
