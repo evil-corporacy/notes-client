@@ -15,10 +15,10 @@ const Header = () => {
                 <div className="flex justify-between">
                     <div className="flex items-center gap-x-5 text-white">
                         <div className="flex gap-5">
-                            <Link href="/">
+                            <Link href={"/"}>
                                 <Logo logo={NotesLogo}/>
                             </Link>
-                            <Link href="/">
+                            <Link href={"/"}>
                                 <Logo logo={CELogo}/>
                             </Link>
                         </div>

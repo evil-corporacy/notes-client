@@ -1,6 +1,6 @@
 "use client"
 import {Button, Container, Divider, IconButton, Input, LinearProgress, Typography} from '@mui/joy';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import KeyIcon from "@mui/icons-material/Key";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -17,7 +17,9 @@ const Page = () => {
     const [apiKey, setApiKey] = useState<string>("")
     const accessToken: any = typeof window !== 'undefined' ? localStorage.getItem("access") : null;
 
-    if (!accessToken) router.replace("/auth/login")
+    useEffect(() => {
+        if (!accessToken) router.replace("/auth/login")
+    }, [accessToken]);
     const {data, isLoading} = useGetMeQuery(accessToken)
 
     // const saveApiKey = () => {
