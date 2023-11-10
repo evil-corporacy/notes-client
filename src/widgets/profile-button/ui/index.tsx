@@ -11,7 +11,7 @@ const ProfileButton = () => {
     const {data, isLoading} = useGetMeQuery(accessToken)
 
     return (
-        <Link href="/profile">
+        <Link href={"/profile"}>
             {
                 data ?
                     <div className="flex gap-4 cursor-pointer border-2 border-black py-2 px-4 rounded-xl hover:border-gray/30 duration-300">

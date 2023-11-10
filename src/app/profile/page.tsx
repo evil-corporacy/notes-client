@@ -15,7 +15,7 @@ const Page = () => {
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
     const [canSave, setCanSave] = useState<boolean>(false)
     const [apiKey, setApiKey] = useState<string>("")
-    const accessToken: any = localStorage.getItem("access")
+    const accessToken: any = typeof window !== 'undefined' ? localStorage.getItem("access") : null;
 
     if (!accessToken) router.replace("/auth/login")
     const {data, isLoading} = useGetMeQuery(accessToken)

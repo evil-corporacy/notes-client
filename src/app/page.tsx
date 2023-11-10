@@ -11,7 +11,7 @@ export default function Home() {
                 <h1 className="text-white font-bold text-9xl z-10">Notes</h1>
                 <h2 className="text-white font-bold text-xl z-10">Храни информацию</h2>
                 <h2 className="text-white font-bold text-xl z-10">Делись информацией</h2>
-                <Link href="/auth/login">
+                <Link href={"/auth/login"}>
                     <Button variant="outlined" color="primary">Начать</Button>
                 </Link>
             </div>

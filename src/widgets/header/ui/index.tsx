@@ -22,10 +22,10 @@ const Header = () => {
                                 <Logo logo={CELogo}/>
                             </Link>
                         </div>
-                        <Link href="/vaults">
+                        <Link href={"/vaults"}>
                             Твои волты
                         </Link>
-                        <Link href="/vaults/search">
+                        <Link href={"/vaults/search"}>
                             Публичные волты
                         </Link>
                     </div>

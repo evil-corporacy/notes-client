@@ -216,7 +216,7 @@ const Page = () => {
                     </Button>
 
                     <Typography level="body-lg" sx={{color: "white"}}>Есть аккаунт? <Typography color="primary"><Link
-                        href="/auth/login">Логинься!</Link></Typography></Typography>
+                        href={"/auth/login"}>Логинься!</Link></Typography></Typography>
                 </form>
             </main>
         </>

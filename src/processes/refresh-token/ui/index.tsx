@@ -7,7 +7,7 @@ const RefreshToken = () => {
 
     useEffect(() => {
         if (typeof window !== 'undefined' && window.localStorage) {
-            const refreshToken = localStorage.getItem('refresh') || '';
+            const refreshToken: any = typeof window !== 'undefined' ? localStorage.getItem("refresh") : null;
             // eslint-disable-next-line react-hooks/rules-of-hooks
             useTokenRefresher(refreshToken);
         }

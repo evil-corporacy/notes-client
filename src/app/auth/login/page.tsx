@@ -138,7 +138,7 @@ const Page = () => {
                     </Button>
 
                     <Typography level="body-lg" sx={{color: "white"}}>Нет аккаунта? <Typography color="primary"><Link
-                        href="/auth/registration">Регистрируйся!</Link></Typography></Typography>
+                        href={"/auth/registration"}>Регистрируйся!</Link></Typography></Typography>
                 </form>
             </main>
         </>
