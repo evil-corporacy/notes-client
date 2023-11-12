@@ -3,9 +3,8 @@
 import React, {useState} from 'react';
 import {Checkbox, List, ListItem, ListItemDecorator, Textarea, Typography} from "@mui/joy";
 
-const TodoList = ({list, colors, readonly}: { list: string[], colors?: string[], readonly?: boolean}) => {
+const TodoList = ({list, colors, readonly}: {index: number, list: string[], colors?: string[], readonly?: boolean, handleChangeBlock?: (index: number, text: string) => void  }) => {
     const [content, setContent] = useState<any>(list)
-    // const handleChange = (e: ChangeEvent<HTMLInputElement>) => setContent(e.target.value)
 
     const handleChange = (e: any, index: number) => {
         const newData = [...content]

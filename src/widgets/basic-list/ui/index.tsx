@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import {List, ListItem, ListItemDecorator, Textarea, Typography} from "@mui/joy";
 
-const BasicList = ({list, colors, readonly}: { list: string[], colors?: string[], readonly?: boolean }) => {
+const BasicList = ({list, colors, readonly}: {index: number, list: string[], colors?: string[], readonly?: boolean, handleChangeBlock?: (index: number, text: string) => void   }) => {
     const [content, setContent] = useState<string[]>(list)
     // const handleChange = (e: ChangeEvent<HTMLInputElement>) => setContent(e.target.value)
 

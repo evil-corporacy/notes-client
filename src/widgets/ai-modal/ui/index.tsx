@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useState} from 'react';
-import {Button, IconButton, Input, Modal, ModalDialog, Sheet, Snackbar} from "@mui/joy";
+import {Button, IconButton, Input, Modal, ModalClose, ModalDialog, Sheet, Snackbar} from "@mui/joy";
 import SendIcon from '@mui/icons-material/Send';
 import Message from "@/widgets/message/ai";
 import api from "@/features/axios"
@@ -39,6 +39,7 @@ const AiModal = ({open, setOpen, pasteInNote}: { open: boolean, setOpen: any, pa
     return (
         <Modal open={open} onClose={() => setOpen(false)}>
             <ModalDialog>
+                <ModalClose />
                 <Snackbar
                     open={snackBarData.open}
                     onClose={() => setOpen(false)}

@@ -4,9 +4,11 @@ import React, {useState} from 'react';
 import {Table, Typography} from "@mui/joy";
 
 const TableBlock = ({table, colors, readonly}: {
+    index: number,
     table: { header: string[], body: string[] },
     colors?: string[],
-    readonly?: boolean
+    readonly?: boolean,
+    handleChangeBlock?: any
 }) => {
     const [content, setContent] = useState(table)
 

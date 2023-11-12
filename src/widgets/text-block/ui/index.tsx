@@ -18,7 +18,7 @@ import TableRowsIcon from '@mui/icons-material/TableRows';
 import {ButtonGroup, IconButton, Tooltip} from "@mui/joy";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const TextBlock = ({block, colors, readonly, handleDeleteBlock}: {handleDeleteBlock?: (itemToDelete: any) => void, block?: any, index?: number, colors?: string[], readonly?: boolean }) => {
+const TextBlock = ({block, colors, readonly, handleDeleteBlock, handleChangeBlock, handleChangeType, index}: {handleDeleteBlock?: (itemToDelete: any) => void, block?: any, index?: number, colors?: string[], handleChangeType?: (type: string, index: number) => void,  readonly?: boolean, handleChangeBlock?: (index: number, text: string) => void }) => {
     const [menuVisible, setMenuVisible] = useState<boolean>(false)
     const [type, setType] = useState(block?.type)
 
@@ -105,29 +105,34 @@ const TextBlock = ({block, colors, readonly, handleDeleteBlock}: {handleDeleteBl
     const parseBlock = () => {
         switch (type) {
             case "heading-1":
-                return <Heading1 data={block?.content} colors={colors} readonly={readonly}/>
+                return <Heading1 index={index ? index : 0} handleChangeBlock={handleChangeBlock} data={block?.content} colors={colors} readonly={readonly}/>
             case "heading-2":
-                return <Heading2 data={block?.content} colors={colors} readonly={readonly}/>
+                return <Heading2 index={index ? index : 0} handleChangeBlock={handleChangeBlock} data={block?.content} colors={colors} readonly={readonly}/>
             case "heading-3":
-                return <Heading3 data={block?.content} colors={colors} readonly={readonly}/>
+                return <Heading3 index={index ? index : 0} handleChangeBlock={handleChangeBlock} data={block?.content} colors={colors} readonly={readonly}/>
             case "heading-4":
-                return <Heading4 data={block?.content} colors={colors} readonly={readonly}/>
+                return <Heading4 index={index ? index : 0} handleChangeBlock={handleChangeBlock} data={block?.content} colors={colors} readonly={readonly}/>
             case "text":
-                return <Text data={block?.content} colors={colors} readonly={readonly}/>
+                return <Text index={index ? index : 0} handleChangeBlock={handleChangeBlock} data={block?.content} colors={colors} readonly={readonly}/>
             case "list":
-                return <BasicList list={block?.list} colors={colors} readonly={readonly}/>
+                return <BasicList index={index ? index : 0} handleChangeBlock={handleChangeBlock} list={block?.list} colors={colors} readonly={readonly}/>
             case "num-list":
-                return <NumList list={block?.list} colors={colors} readonly={readonly}/>
+                return <NumList index={index ? index : 0} handleChangeBlock={handleChangeBlock} list={block?.list} colors={colors} readonly={readonly}/>
             case "todo-list":
-                return <TodoList list={block?.list} colors={colors} readonly={readonly}/>
+                return <TodoList index={index ? index : 0} handleChangeBlock={handleChangeBlock} list={block?.list} colors={colors} readonly={readonly}/>
             case "table":
-                return <TableBlock table={block?.table} colors={colors} readonly={readonly}/>
+                return <TableBlock index={index ? index : 0} handleChangeBlock={handleChangeBlock ? handleChangeBlock : ""} table={block?.table} colors={colors} readonly={readonly}/>
             default:
                 return ""
         }
     }
 
-    const handleChangeType = (type: string) => setType(type)
+    const changeType = (type: string, index: number) => {
+        if (handleChangeType) {
+            handleChangeType(type, index)
+            setType(type)
+        }
+    }
 
     if (readonly) return <div>
         {parseBlock()}
@@ -136,18 +141,17 @@ const TextBlock = ({block, colors, readonly, handleDeleteBlock}: {handleDeleteBl
         <div className="relative" onMouseEnter={() => setMenuVisible(true)} onMouseLeave={() => setMenuVisible(false)}>
             <div className={`absolute -top-8 duration-300 ${menuVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
                 <ButtonGroup variant="soft" aria-label="neutral button group" sx={{ '--ButtonGroup-radius': '40px', '--ButtonGroup-background': "black" }}>
-                    {showTypes()?.map((item, index: number) =>
-                        <Tooltip key={index} title={item.title}>
-                            <IconButton onClick={() => handleChangeType(item.type)}>
+                    {showTypes()?.map((item, typeIndex: number) =>
+                        <Tooltip key={typeIndex} title={item.title}>
+                            <IconButton onClick={() => changeType(item.type, index ? index : 0)}>
                                 {item.icon}
                             </IconButton>
                     </Tooltip>)}
                     <Tooltip title="Удалить текстовый блок">
-                        <IconButton color="danger" onClick={() => handleDeleteBlock ? handleDeleteBlock(block) : console.log(block)}><DeleteIcon/></IconButton>
+                        <IconButton color="danger" onClick={() => handleDeleteBlock ? handleDeleteBlock(index) : ""}><DeleteIcon/></IconButton>
                     </Tooltip>
                 </ButtonGroup>
             </div>
-            {/*{index}*/}
             {parseBlock()}
         </div>
     )

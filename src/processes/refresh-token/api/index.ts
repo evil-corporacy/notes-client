@@ -1,6 +1,6 @@
 import api from "@/features/axios";
 
-const tokenRefresher = async (refreshToken: string): Promise<any> => {
+export const tokenRefresher = async (refreshToken: string): Promise<any> => {
     const response = await api.patch('/auth/refresh', { refresh: refreshToken });
 
     const newAccessToken = response.data.accessToken;

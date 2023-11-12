@@ -10,27 +10,33 @@ const ProfileButton = () => {
     const accessToken: any = typeof window !== 'undefined' ? localStorage.getItem("access") : null;
     const {data, isLoading} = useGetMeQuery(accessToken)
 
-    return (
-        <Link href={"/profile"}>
-            {
-                data ?
-                    <div className="flex gap-4 cursor-pointer border-2 border-black py-2 px-4 rounded-xl hover:border-gray/30 duration-300">
-                        {isLoading ?
-                            <CircularProgress/>
-                            :
-                            <>
-                                <Typography level="h4"
-                                            sx={{color: 'white', display: 'flex', alignItems: 'center'}}>{data?.data.nickname}</Typography>
-                                <Avatar alt={data?.data.nickname}/>
-                            </>
-                        }
-                    </div>
-                    :
-                    <Button startDecorator={<PersonIcon/>}>Залогиниться</Button>
-            }
-
-        </Link>
-    );
+    if (data)
+        return (
+            <Link href={"/profile"}>
+                <div
+                    className="flex gap-4 cursor-pointer border-2 border-black py-2 px-4 rounded-xl hover:border-gray/30 duration-300">
+                    {isLoading ?
+                        <CircularProgress/>
+                        :
+                        <>
+                            <Typography level="h4"
+                                        sx={{
+                                            color: 'white',
+                                            display: 'flex',
+                                            alignItems: 'center'
+                                        }}>{data?.data.nickname}</Typography>
+                            <Avatar alt={data?.data.nickname}/>
+                        </>
+                    }
+                </div>
+            </Link>
+        );
+    else
+        return (
+            <Link href={"/auth/login"}>
+                <Button startDecorator={<PersonIcon/>}>Залогиниться</Button>
+            </Link>
+        )
 };
 
 export default ProfileButton;

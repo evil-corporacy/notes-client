@@ -1,12 +1,12 @@
 'use client'
 
-import React, {useState} from 'react';
+import React from 'react';
 import {Textarea, Typography} from "@mui/joy";
 
-const Heading2 = ({data, colors, readonly}: { data: string, colors?: string[], readonly?: boolean }) => {
-    const [content, setContent] = useState<string>(data)
+const Heading2 = ({index, data, colors, readonly, handleChangeBlock}: {index: number, data: string, colors?: string[], readonly?: boolean, handleChangeBlock?: (index: number, text: string) => void  }) => {
     const handleChange = (e: any) => {
-        setContent(e.target.value)
+        if (handleChangeBlock)
+            handleChangeBlock(index, e.target.value)
     }
 
     if (readonly) return <Typography
@@ -18,12 +18,14 @@ const Heading2 = ({data, colors, readonly}: { data: string, colors?: string[], r
             lineHeight: "2.25rem",
             fontWeight: "700",
             color: colors ? colors[0] : "white"
-        }}>{content}</Typography>
+        }}>{data}</Typography>
     else
         return (
             <Textarea
-                value={content}
+                placeholder={"Заголовок 2"}
+                value={data}
                 onChange={handleChange}
+                variant="plain"
                 sx={{
                     background: "transparent",
                     border: "none",

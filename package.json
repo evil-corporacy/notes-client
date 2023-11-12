@@ -20,6 +20,7 @@
     "@types/config": "^3.3.2",
     "@types/mdx": "^2.0.9",
     "axios": "^1.6.0",
+    "color-thief-react": "^2.1.0",
     "config": "^3.3.9",
     "markdown-to-jsx": "^7.3.2",
     "mui-markdown": "^1.1.11",
