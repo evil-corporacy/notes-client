@@ -5,3 +5,13 @@ export interface Note {
 	content: string
 	starred: boolean
 }
+
+interface ShortNote {
+	id: string
+	title: string
+}
+
+export interface Notes {
+	success: boolean
+	content: ShortNote[]
+}

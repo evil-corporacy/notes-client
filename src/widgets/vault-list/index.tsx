@@ -12,7 +12,7 @@ const VaultList = ({loading, data}: {loading: boolean, data?: Vault[]}) => {
     console.log(data)
 
     return (
-        <div className={`w-full flex flex-wrap gap-20 justify-center duration-400`}>
+        <div className={`w-full flex flex-wrap gap-20 justify-start duration-400`}>
             {loading ?
                 emptyArray.map((item: undefined, index: number) =>
                     <VaultCard key={index} loading={true}/>

@@ -1,30 +1,40 @@
-import {ResponseModel} from "../model/index"
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { ResponseModel } from '../model/index'
 
-
+const getAccessToken = () => {
+	if (typeof window === 'undefined') {
+		return null
+	}
+	return localStorage.getItem('access')
+}
 export const VaultApi = createApi({
-    reducerPath: "VaultAPI",
-    baseQuery: fetchBaseQuery({baseUrl: "http://127.0.0.1:8000/api/vaults"}),
-    endpoints: (builder) => ({
-        getMy: builder.query<ResponseModel, string>({
-            query: (accessToken: string | null) => ({
-                url: '/my',
-                method: "GET",
-                headers: {
-                    "Authorization": `Bearer ${accessToken}`
-                }
-            }),
-        }),
-        getById: builder.query<ResponseModel, string>({
-            query: (accessToken: any, id: string) => ({
-                url: `?id=${id}`,
-                method: "GET",
-                headers: {
-                    "Authorization": `Bearer ${accessToken}`
-                }
-            }),
-        }),
-    })
+	reducerPath: 'VaultAPI',
+	baseQuery: fetchBaseQuery({
+		baseUrl: 'http://127.0.0.1:8000/api/vaults',
+		headers: {
+			Authorization: `Bearer ${getAccessToken()}`,
+		},
+	}),
+	endpoints: builder => ({
+		getMy: builder.query<ResponseModel, string>({
+			query: (accessToken: string | null) => ({
+				url: '/my',
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}),
+		}),
+		getById: builder.query<ResponseModel, string>({
+			query: (id: string) => ({
+				url: `?id=${id}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${getAccessToken()}`,
+				},
+			}),
+		}),
+	}),
 })
 
-export const {useGetMyQuery, useGetByIdQuery} = VaultApi
+export const { useGetMyQuery, useGetByIdQuery } = VaultApi
