@@ -1,19 +1,23 @@
 'use client'
 
 import React, {useState} from 'react';
-import {ButtonGroup, IconButton, Typography} from "@mui/joy";
-import data from "@/shared/data/note.json";
+import {ButtonGroup, CircularProgress, IconButton, Typography} from "@mui/joy";
 import TextBlock from "@/widgets/text-block/ui";
 import NavBar from "@/widgets/nav-bar/ui";
 import Image from "next/image";
 import NoteEdit from "@/widgets/note-edit/ui";
 import TitleIcon from "@mui/icons-material/Title";
+import {useGetNoteByIdQuery} from "@/entities/note/api";
 
 const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
-    const [note, setNote] = useState<any>(data.note.content)
     const [image, setImage] = useState<any>("http://localhost/media/backgrounds/cai-fang-xZgwNbcLBWM-unsplash.jpg");
-    const title = data.note.title
-    const [colors, setColors] = useState<string[]>(data.note.colors)
+
+    const {data, isLoading} = useGetNoteByIdQuery(params.noteId)
+    const [note, setNote] = useState<any>(data?.content)
+    const title = data?.title
+    const [colors, setColors] = useState<string[] | undefined>(data?.colors)
+
+    console.log(data)
 
     const pasteInNote = (data: any) => {
         const newData = [...note, ...data]
@@ -85,26 +89,33 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
         },
     ]
 
+    if (!data)
+        return (
+            <main className="w-screen h-screen flex justify-center items-center">
+                <CircularProgress/>
+            </main>
+        )
+    else
     return (
-        <main className={`bg-black flex`}>
-            <div className="w-full" style={{background: colors[2]}}>
+        <main className={`bg-black flex min-h-screen`}>
+            <div className="w-full" style={{background: colors ? colors[2] : "#000000"}}>
                 <div className="w-full h-80 overflow-hidden relative">
                     <Image quality={75} priority={true} src={image} width={1640} height={300} alt={"Фоновая картинка"}/>
                     <div className="absolute top-0 left-0 h-full w-full flex justify-between">
                         <div className="pr-96 pl-20 w-full">
                             <div className="flex justify-between">
-                                <Typography level="h1" sx={{color: colors[1]}}>{title}</Typography>
+                                <Typography level="h1" sx={{color:  colors ? colors[1] : "#FFFFFF"}}>{title}</Typography>
                                 <NoteEdit handleChangeImage={handleChangeImage} handleSaveColors={handleSaveColors} pasteInNote={pasteInNote} colors={colors}/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="py-10 pr-96 pl-20">
-                    {note.map((block: any, index: number) =>
+                    {note ? note.map((block: any, index: number) =>
                         <TextBlock index={index} handleChangeType={handleChangeType} handleChangeBlock={handleChangeBlock} handleDeleteBlock={handleDeleteBlock} key={block} block={block} colors={colors}/>
-                    )}
+                    ) : ""}
                     <ButtonGroup>
-                        {types.map((type, index: number) => <IconButton onClick={() => handleAddBlock(type.type)} key={index} sx={{background: colors[1], color: colors[2]}}>{type.icon}</IconButton>)}
+                        {types.map((type, index: number) => <IconButton onClick={() => handleAddBlock(type.type)} key={index} sx={{background: colors ? colors[1] : "#FFFFFF", color: colors ? colors[2] : "#000000"}}>{type.icon}</IconButton>)}
                     </ButtonGroup>
                 </div>
             </div>

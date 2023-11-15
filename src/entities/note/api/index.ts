@@ -16,7 +16,7 @@ export const NoteApi = createApi({
 		},
 	}),
 	endpoints: builder => ({
-		getByVault: builder.query<Notes, string>({
+		getByVault: builder.query<Notes, string | undefined>({
 			query: (id: string | undefined) => ({
 				url: `/byvault?id=${id}`,
 				method: 'GET',
@@ -25,7 +25,7 @@ export const NoteApi = createApi({
 				},
 			}),
 		}),
-		getById: builder.query<Notes, string>({
+		getNoteById: builder.query<Notes, string>({
 			query: (id: string | undefined) => ({
 				url: `?id=${id}`,
 				method: 'GET',
@@ -37,4 +37,4 @@ export const NoteApi = createApi({
 	}),
 })
 
-export const { useGetByVaultQuery } = NoteApi
+export const { useGetByVaultQuery, useGetNoteByIdQuery } = NoteApi

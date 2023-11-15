@@ -9,5 +9,5 @@ export interface Vault {
 
 export interface ResponseModel {
 	success: boolean
-	data: Vault[]
+	data: Vault
 }

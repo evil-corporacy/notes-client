@@ -5,17 +5,15 @@ import React from "react";
 import {Search} from "@mui/icons-material";
 import CreateVault from "@/widgets/create-vault";
 import VaultList from "@/widgets/vault-list";
-import {useGetMeQuery} from "@/entities/user/api";
 import {useGetMyQuery} from "@/entities/vault/api";
 
 const Page = () => {
     const loading = false
-    const accessToken = localStorage.getItem("access")
-    const {data, isLoading} = useGetMyQuery(accessToken)
+    const {data, isLoading} = useGetMyQuery(undefined)
     const vaults = data?.data
 
     return (
-        <main className='h-full w-full bg-black pb-10'>
+        <main className='h-full w-full bg-black pb-10 min-h-screen'>
             <Container>
                 <div className='my-10'>
                     <div className="flex flex-col gap-10 pt-10 mb-10">

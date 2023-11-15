@@ -1,20 +1,17 @@
 "use client"
-import {Button, Container, Divider, IconButton, Input, LinearProgress, Typography} from '@mui/joy';
+import {Button, Container, Divider, Input, LinearProgress, Typography} from '@mui/joy';
 import React, {useEffect, useState} from 'react';
-import KeyIcon from "@mui/icons-material/Key";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
-import {Save} from "@mui/icons-material";
+import {ExitToApp, Save} from "@mui/icons-material";
 import {useGetMeQuery} from "@/entities/user/api";
 import {useRouter} from "next/navigation";
 
 const Page = () => {
     const router = useRouter()
-    const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
+    // const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
     const [canSave, setCanSave] = useState<boolean>(false)
-    const [apiKey, setApiKey] = useState<string>("")
+    // const [apiKey, setApiKey] = useState<string>("")
     const accessToken: any = typeof window !== 'undefined' ? localStorage.getItem("access") : null;
 
     useEffect(() => {
@@ -25,6 +22,12 @@ const Page = () => {
     // const saveApiKey = () => {
     //     saveApiKey(apiKey)
     // }
+
+    const logOut = () => {
+        localStorage.removeItem("access")
+        localStorage.removeItem("refresh")
+        router.replace("/")
+    }
 
     return (
         <main className="bg-black h-screen">
@@ -62,31 +65,32 @@ const Page = () => {
                     <Divider/>
                     <div>
                         <div>
-                            <Typography level="h4" sx={{color: "white"}}>Ключ OpenAI</Typography>
-                            <div className="flex">
-                                <Input
-                                    type={passwordVisible ? 'text' : 'password'}
-                                    startDecorator={<KeyIcon />}
-                                    sx={{ width: '100%' }}
-                                    variant='soft'
-                                    size='lg'
-                                    onChange={(e) => setApiKey(e.target.value)}
-                                    value={apiKey}
-                                />
-                                <IconButton variant="soft" size="lg" color="neutral" sx={{marginLeft: "15px"}} onClick={() => setPasswordVisible(!passwordVisible)}>
-                                    {passwordVisible ?
-                                        <VisibilityIcon/>
-                                        :
-                                        <VisibilityOffIcon/>
-                                    }
-                                </IconButton>
-                            </div>
+                            {/*<Typography level="h4" sx={{color: "white"}}>Ключ OpenAI</Typography>*/}
+                            {/*<div className="flex">*/}
+                            {/*    <Input*/}
+                            {/*        type={passwordVisible ? 'text' : 'password'}*/}
+                            {/*        startDecorator={<KeyIcon />}*/}
+                            {/*        sx={{ width: '100%' }}*/}
+                            {/*        variant='soft'*/}
+                            {/*        size='lg'*/}
+                            {/*        onChange={(e) => setApiKey(e.target.value)}*/}
+                            {/*        value={apiKey}*/}
+                            {/*    />*/}
+                            {/*    <IconButton variant="soft" size="lg" color="neutral" sx={{marginLeft: "15px"}} onClick={() => setPasswordVisible(!passwordVisible)}>*/}
+                            {/*        {passwordVisible ?*/}
+                            {/*            <VisibilityIcon/>*/}
+                            {/*            :*/}
+                            {/*            <VisibilityOffIcon/>*/}
+                            {/*        }*/}
+                            {/*    </IconButton>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-10">
+                <div className="mt-10 flex justify-between">
                     <Button disabled={canSave} endDecorator={<Save/>}>Сохранить</Button>
+                    <Button disabled={canSave} onClick={logOut} color="danger" endDecorator={<ExitToApp/>}>Выйти</Button>
                 </div>
             </Container>
         </main>

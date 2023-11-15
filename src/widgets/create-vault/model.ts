@@ -1,5 +1,5 @@
 export interface Model {
-    name: string
+    title: string
     description: string
     isPublic: boolean
 }

@@ -5,28 +5,32 @@ import {Button, Checkbox, FormLabel, Input, Modal, ModalClose, Sheet, Textarea, 
 import Add from "@mui/icons-material/Add";
 import {getRandom} from "@/features/get-random";
 import {vaultNames} from "@/shared/data/vault-names";
-import {SubmitHandler, useForm, useFormState} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {Model} from "@/widgets/create-vault/model";
 import {createVault} from "@/widgets/create-vault/api";
+import {useRouter} from "next/navigation";
 
 const CreateVault = () => {
     const [open, setOpen] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
-
+    const router = useRouter()
     const {
         register,
         handleSubmit,
         watch,
         formState: {errors},
     } = useForm<Model>()
-    const onSubmit: SubmitHandler<Model> = (data) => {
+    const onSubmit: SubmitHandler<Model> = async (data) => {
         setLoading(true)
 
         try {
-            const response = createVault(data)
-            console.log(response)
+            const response = await createVault(data)
             setLoading(false)
+            if (response.data.success) {
+                const id = response.data.data.id
+                router.push(id)
+            }
         } catch (error) {
             setLoading(false)
             setError(true)
@@ -62,10 +66,10 @@ const CreateVault = () => {
                         <FormLabel>
                             <Typography id="modal-desc" textColor="inherit" sx={{color: "white"}}>
                                 Название
-                                <Input error={watch("name")?.length > 100} aria-valuemax={100}
+                                <Input error={watch("title")?.length > 100} aria-valuemax={100}
                                        placeholder={getRandom(vaultNames)}
-                                       sx={{width: 300}} {...register("name", {required: true, maxLength: 100})}
-                                       endDecorator={100 - watch("name")?.length || 100}/>
+                                       sx={{width: 300}} {...register("title", {required: true, maxLength: 100})}
+                                       endDecorator={100 - watch("title")?.length || 100}/>
                             </Typography>
                         </FormLabel>
                         <FormLabel>

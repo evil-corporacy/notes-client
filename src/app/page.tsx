@@ -4,7 +4,7 @@ import {Edit} from "@mui/icons-material";
 
 export default function Home() {
   return (
-    <main className="bg-black h-full">
+    <main className="bg-black h-full min-h-screen">
         <Container>
             <div className="flex flex-col justify-center items-center gap-2.5 h-screen">
                 <Edit sx={{fontSize: 200, position: "absolute", marginTop: -15, zIndex: 0}}/>

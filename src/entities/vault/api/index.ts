@@ -16,12 +16,12 @@ export const VaultApi = createApi({
 		},
 	}),
 	endpoints: builder => ({
-		getMy: builder.query<ResponseModel, string>({
-			query: (accessToken: string | null) => ({
+		getMy: builder.query<ResponseModel, undefined>({
+			query: () => ({
 				url: '/my',
 				method: 'GET',
 				headers: {
-					Authorization: `Bearer ${accessToken}`,
+					Authorization: `Bearer ${getAccessToken()}`,
 				},
 			}),
 		}),

@@ -13,5 +13,7 @@ interface ShortNote {
 
 export interface Notes {
 	success: boolean
+	title: string
+	colors: string[]
 	content: ShortNote[]
 }
