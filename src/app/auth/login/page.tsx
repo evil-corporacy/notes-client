@@ -45,8 +45,8 @@ const Page = () => {
         try {
             setLoading(true)
             const response = await login(data)
-            localStorage.setItem("access", response.data.data.tokens.access)
-            localStorage.setItem("refresh", response.data.data.tokens.refresh)
+            localStorage.setItem("access", response.data.tokens.access)
+            localStorage.setItem("refresh", response.data.tokens.refresh)
             setLoading(false)
             router.replace("/vaults")
         } catch (e: any) {

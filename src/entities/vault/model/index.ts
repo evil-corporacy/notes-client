@@ -1,12 +1,13 @@
-import { Note } from '@/entities/note/model'
-
 export interface Vault {
 	id: string
 	title: string
-	user: string
+	description: string
 	isPublic: boolean
-	description?: string
-	tags?: string[]
 	colors: string[]
-	notes?: Note[]
+	tags: string[]
+}
+
+export interface ResponseModel {
+	success: boolean
+	data: Vault[]
 }

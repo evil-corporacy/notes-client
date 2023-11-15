@@ -5,8 +5,9 @@ import {Button, Checkbox, FormLabel, Input, Modal, ModalClose, Sheet, Textarea, 
 import Add from "@mui/icons-material/Add";
 import {getRandom} from "@/features/get-random";
 import {vaultNames} from "@/shared/data/vault-names";
-import {SubmitHandler, useForm} from "react-hook-form";
+import {SubmitHandler, useForm, useFormState} from "react-hook-form";
 import {Model} from "@/widgets/create-vault/model";
+import {createVault} from "@/widgets/create-vault/api";
 
 const CreateVault = () => {
     const [open, setOpen] = useState<boolean>(false)
@@ -20,17 +21,12 @@ const CreateVault = () => {
         formState: {errors},
     } = useForm<Model>()
     const onSubmit: SubmitHandler<Model> = (data) => {
-        console.log(data)
         setLoading(true)
 
-        function throwErrorAfterDelay() {
-            setTimeout(() => {
-                throw new Error("Ошибка после задержки в 300 миллисекунд");
-            }, 300);
-        }
-
         try {
-            throwErrorAfterDelay();
+            const response = createVault(data)
+            console.log(response)
+            setLoading(false)
         } catch (error) {
             setLoading(false)
             setError(true)
@@ -84,9 +80,8 @@ const CreateVault = () => {
                                 })}/>
                             </Typography>
                         </FormLabel>
-                        <Checkbox label="Приватный волт" {...register("isPrivate", {required: true})} variant="solid"
-                                  defaultChecked/>
-                        {/*<Button error={error} type="submit" loading={loading}>Создать волт</Button>*/}
+                        <Checkbox label="Публичный волт" {...register("isPublic", {required: true})} variant="solid"/>
+                        <Button type="submit" disabled={loading}>Создать волт</Button>
                     </form>
                 </Sheet>
             </Modal>

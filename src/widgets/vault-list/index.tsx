@@ -3,10 +3,13 @@
 import React from 'react';
 import VaultCard from "@/entities/vault/ui";
 import vaults from "@/shared/data/vaults.json";
+import {Vault} from "@/entities/vault/model";
 
-const Index = ({loading}: {loading: boolean}) => {
+const VaultList = ({loading, data}: {loading: boolean, data?: Vault[]}) => {
 
     const emptyArray = new Array(9).fill(0)
+
+    console.log(data)
 
     return (
         <div className={`w-full flex flex-wrap gap-20 justify-center duration-400`}>
@@ -15,11 +18,11 @@ const Index = ({loading}: {loading: boolean}) => {
                     <VaultCard key={index} loading={true}/>
                 )
                 :
-                vaults.map((vault, index: number) => (
+                data?.map((vault, index: number) => (
                     <VaultCard key={index} vault={vault} loading={loading}/>
                 ))}
         </div>
     );
 };
 
-export default Index;
+export default VaultList;

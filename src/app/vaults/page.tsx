@@ -1,11 +1,18 @@
+"use client"
+
 import {Button, Container, Input} from '@mui/joy'
 import React from "react";
 import {Search} from "@mui/icons-material";
 import CreateVault from "@/widgets/create-vault";
 import VaultList from "@/widgets/vault-list";
+import {useGetMeQuery} from "@/entities/user/api";
+import {useGetMyQuery} from "@/entities/vault/api";
 
 const Page = () => {
     const loading = false
+    const accessToken = localStorage.getItem("access")
+    const {data, isLoading} = useGetMyQuery(accessToken)
+    const vaults = data?.data
 
     return (
         <main className='h-full w-full bg-black pb-10'>
@@ -20,7 +27,7 @@ const Page = () => {
                             </div>
                             <CreateVault/>
                         </div>
-                        <VaultList loading={loading}/>
+                        <VaultList loading={loading} data={vaults}/>
                     </div>
                 </div>
             </Container>
