@@ -25,6 +25,15 @@ export const NoteApi = createApi({
 				},
 			}),
 		}),
+		getById: builder.query<Notes, string>({
+			query: (id: string | undefined) => ({
+				url: `?id=${id}`,
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${getAccessToken()}`,
+				},
+			}),
+		}),
 	}),
 })
 
