@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ButtonGroup, CircularProgress, IconButton, Typography} from "@mui/joy";
 import TextBlock from "@/widgets/text-block/ui";
 import NavBar from "@/widgets/nav-bar/ui";
@@ -8,16 +8,22 @@ import Image from "next/image";
 import NoteEdit from "@/widgets/note-edit/ui";
 import TitleIcon from "@mui/icons-material/Title";
 import {useGetNoteByIdQuery} from "@/entities/note/api";
+import {updateNote} from "@/app/vaults/[vaultId]/notes/[noteId]/api";
 
 const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
     const [image, setImage] = useState<any>("http://localhost/media/backgrounds/cai-fang-xZgwNbcLBWM-unsplash.jpg");
 
     const {data, isLoading} = useGetNoteByIdQuery(params.noteId)
-    const [note, setNote] = useState<any>(data?.content)
-    const title = data?.title
-    const [colors, setColors] = useState<string[] | undefined>(data?.colors)
+    const [note, setNote] = useState<any>()
+    const [title, setTitle] = useState<string | undefined>("")
+    const [colors, setColors] = useState<string[] | undefined>()
 
-    console.log(data)
+    useEffect(() => {
+        setColors(data?.colors)
+        setNote(data?.content)
+        setTitle(data?.title)
+    }, [data])
+
 
     const pasteInNote = (data: any) => {
         const newData = [...note, ...data]
@@ -28,28 +34,33 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
         const newData = [...note]
         newData.splice(index, 1)
         setNote(newData)
+        updateNote(params.noteId, {title, colors, content: note})
     }
 
     const handleChangeBlock = (index: number, text: string) => {
         const newData: any = [...note]
         newData[index] = { ...newData[index], content: text };
         setNote(newData)
+        updateNote(params.noteId, {title, colors, content: note})
     }
 
     const handleAddBlock = (type: string) => {
         const newData: any = [...note]
         newData.push({type, content: ""});
         setNote(newData)
+        updateNote(params.noteId, {title, colors, content: note})
     }
 
     const handleSaveColors = (newColors: string[]) => {
         setColors([...newColors])
+        updateNote(params.noteId, {title, colors: newColors, content: note})
     }
 
     const handleChangeType = (type: string, index: number) => {
         const newData = [...note]
         newData[index] = { ...newData[index], type: type };
         setNote(newData)
+        updateNote(params.noteId, {title, colors, content: note})
     }
 
     const handleChangeImage = (src: string | ArrayBuffer | null) => {
