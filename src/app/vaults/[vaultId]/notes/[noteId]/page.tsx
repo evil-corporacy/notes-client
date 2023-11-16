@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react';
 import {ButtonGroup, CircularProgress, IconButton, Typography} from "@mui/joy";
 import TextBlock from "@/widgets/text-block/ui";
 import NavBar from "@/widgets/nav-bar/ui";
-import Image from "next/image";
 import NoteEdit from "@/widgets/note-edit/ui";
 import TitleIcon from "@mui/icons-material/Title";
 import {useGetNoteByIdQuery} from "@/entities/note/api";
@@ -41,14 +40,14 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
         const newData: any = [...note]
         newData[index] = { ...newData[index], content: text };
         setNote(newData)
-        updateNote(params.noteId, {title, colors, content: note})
+        updateNote(params.noteId, {title, colors, content: newData})
     }
 
     const handleAddBlock = (type: string) => {
         const newData: any = [...note]
         newData.push({type, content: ""});
         setNote(newData)
-        updateNote(params.noteId, {title, colors, content: note})
+        updateNote(params.noteId, {title, colors, content: newData})
     }
 
     const handleSaveColors = (newColors: string[]) => {
@@ -60,7 +59,7 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
         const newData = [...note]
         newData[index] = { ...newData[index], type: type };
         setNote(newData)
-        updateNote(params.noteId, {title, colors, content: note})
+        updateNote(params.noteId, {title, colors, content: newData})
     }
 
     const handleChangeImage = (src: string | ArrayBuffer | null) => {
@@ -110,8 +109,8 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
     return (
         <main className={`bg-black flex min-h-screen`}>
             <div className="w-full" style={{background: colors ? colors[2] : "#000000"}}>
-                <div className="w-full h-80 overflow-hidden relative">
-                    <Image quality={75} priority={true} src={image} width={1640} height={300} alt={"Фоновая картинка"}/>
+                <div className="w-full h-12 overflow-hidden relative">
+                    {/*<Image quality={75} priority={true} src={image} width={1640} height={300} alt={"Фоновая картинка"}/>*/}
                     <div className="absolute top-0 left-0 h-full w-full flex justify-between">
                         <div className="pr-96 pl-20 w-full">
                             <div className="flex justify-between">

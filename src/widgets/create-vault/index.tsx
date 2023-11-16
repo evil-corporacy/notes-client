@@ -29,7 +29,7 @@ const CreateVault = () => {
             setLoading(false)
             if (response.data.success) {
                 const id = response.data.data.id
-                router.push(id)
+                router.push(`/vaults/${id}`)
             }
         } catch (error) {
             setLoading(false)
