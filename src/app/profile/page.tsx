@@ -16,7 +16,7 @@ const Page = () => {
 
     useEffect(() => {
         if (!accessToken) router.replace("/auth/login")
-    }, [accessToken]);
+    }, [accessToken, router]);
     const {data, isLoading} = useGetMeQuery(accessToken)
 
     // const saveApiKey = () => {

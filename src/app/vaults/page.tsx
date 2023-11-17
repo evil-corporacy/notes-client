@@ -6,11 +6,12 @@ import {Search} from "@mui/icons-material";
 import CreateVault from "@/widgets/create-vault";
 import VaultList from "@/widgets/vault-list";
 import {useGetMyQuery} from "@/entities/vault/api";
+import {Vault} from "@/entities/vault/model";
 
 const Page = () => {
     const loading = false
-    const {data, isLoading} = useGetMyQuery(undefined)
-    const vaults = data?.data
+    const {data} = useGetMyQuery(undefined)
+    const vaults: Vault | undefined = data?.data
 
     return (
         <main className='h-full w-full bg-black pb-10 min-h-screen'>

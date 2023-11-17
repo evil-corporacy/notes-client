@@ -7,6 +7,7 @@ import Footer from "@/widgets/footer/ui";
 import ReduxProvider from "@/entities/store/ui";
 import Head from "next/head";
 import RefreshToken from "@/processes/refresh-token/ui";
+import React, {ReactNode} from "react";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
                                        children,
                                    }: {
-    children: React.ReactNode
+    children: ReactNode
 }) {
     return (
         <html lang='en' className='bg-black h-screen w-screen'>

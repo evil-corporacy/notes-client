@@ -1,16 +1,19 @@
 "use client"
 
-import {useTokenRefresher} from "@/processes/refresh-token/api";
+import {refreshToken} from "@/processes/refresh-token/api";
 import {useEffect} from "react";
 
 const RefreshToken = () => {
 
-    useEffect(() => {
+    function refresh() {
         if (typeof window !== 'undefined' && window.localStorage) {
-            const refreshToken: any = typeof window !== 'undefined' ? localStorage.getItem("refresh") : null;
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            useTokenRefresher(refreshToken);
+            const token: any = typeof window !== 'undefined' ? localStorage.getItem("refresh") : null;
+            refreshToken(token).then(r => console.log(r))
         }
+    }
+
+    useEffect(() => {
+        refresh()
     }, []);
 
     return (

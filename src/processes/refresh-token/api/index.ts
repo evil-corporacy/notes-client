@@ -11,7 +11,7 @@ export const tokenRefresher = async (refreshToken: string): Promise<any> => {
     }
 }
 
-export const useTokenRefresher = async (refreshToken: string): Promise<any> => {
+export const refreshToken = async (refreshToken: string): Promise<any> => {
     try {
         await tokenRefresher(refreshToken)
 

@@ -2,10 +2,8 @@
 
 import React from 'react';
 import VaultCard from "@/entities/vault/ui";
-import vaults from "@/shared/data/vaults.json";
-import {Vault} from "@/entities/vault/model";
 
-const VaultList = ({loading, data}: {loading: boolean, data?: Vault[]}) => {
+const VaultList = ({loading, data}: {loading: boolean, data?: any}) => {
 
     const emptyArray = new Array(9).fill(0)
 
@@ -18,9 +16,10 @@ const VaultList = ({loading, data}: {loading: boolean, data?: Vault[]}) => {
                     <VaultCard key={index} loading={true}/>
                 )
                 :
-                data?.map((vault, index: number) => (
+                data ? data?.map((vault: any, index: number) => (
                     <VaultCard key={index} vault={vault} loading={loading}/>
-                ))}
+                ))
+            :""}
         </div>
     );
 };

@@ -12,7 +12,7 @@ import {updateNote} from "@/app/vaults/[vaultId]/notes/[noteId]/api";
 const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
     const [image, setImage] = useState<any>("http://localhost/media/backgrounds/cai-fang-xZgwNbcLBWM-unsplash.jpg");
 
-    const {data, isLoading} = useGetNoteByIdQuery(params.noteId)
+    const {data} = useGetNoteByIdQuery(params.noteId)
     const [note, setNote] = useState<any>()
     const [title, setTitle] = useState<string | undefined>("")
     const [colors, setColors] = useState<string[] | undefined>()
@@ -33,33 +33,33 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
         const newData = [...note]
         newData.splice(index, 1)
         setNote(newData)
-        updateNote(params.noteId, {title, colors, content: note})
+        updateNote(params.noteId, {title, colors, content: note}).then(r => console.log(r))
     }
 
     const handleChangeBlock = (index: number, text: string) => {
         const newData: any = [...note]
         newData[index] = { ...newData[index], content: text };
         setNote(newData)
-        updateNote(params.noteId, {title, colors, content: newData})
+        updateNote(params.noteId, {title, colors, content: newData}).then(r => console.log(r))
     }
 
     const handleAddBlock = (type: string) => {
         const newData: any = [...note]
         newData.push({type, content: ""});
         setNote(newData)
-        updateNote(params.noteId, {title, colors, content: newData})
+        updateNote(params.noteId, {title, colors, content: newData}).then(r => console.log(r))
     }
 
     const handleSaveColors = (newColors: string[]) => {
         setColors([...newColors])
-        updateNote(params.noteId, {title, colors: newColors, content: note})
+        updateNote(params.noteId, {title, colors: newColors, content: note}).then(r => console.log(r))
     }
 
     const handleChangeType = (type: string, index: number) => {
         const newData = [...note]
         newData[index] = { ...newData[index], type: type };
         setNote(newData)
-        updateNote(params.noteId, {title, colors, content: newData})
+        updateNote(params.noteId, {title, colors, content: newData}).then(r => console.log(r))
     }
 
     const handleChangeImage = (src: string | ArrayBuffer | null) => {
