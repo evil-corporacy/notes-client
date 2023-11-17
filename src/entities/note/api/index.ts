@@ -10,7 +10,7 @@ const getAccessToken = () => {
 export const NoteApi = createApi({
 	reducerPath: 'NoteApi',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://127.0.0.1:8000/api/notes',
+		baseUrl: 'http://134.0.118.64/api/notes',
 		headers: {
 			Authorization: `Bearer ${getAccessToken()}`,
 		},
