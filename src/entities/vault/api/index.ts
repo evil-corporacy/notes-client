@@ -10,7 +10,7 @@ const getAccessToken = () => {
 export const VaultApi = createApi({
 	reducerPath: 'VaultAPI',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://134.0.118.64/api/vaults',
+		baseUrl: 'http://notes.evcorp.ru/api/vaults',
 		headers: {
 			Authorization: `Bearer ${getAccessToken()}`,
 		},

@@ -3,7 +3,7 @@ import {Ai} from "../model/"
 
 export const AiApi = createApi({
     reducerPath: "AiApi",
-    baseQuery: fetchBaseQuery({baseUrl: "http://134.0.118.64/api/ai/"}),
+    baseQuery: fetchBaseQuery({baseUrl: "http://notes.evcorp.ru/api/ai/"}),
     endpoints: (builder) => ({
         // askQuestion: builder.query<Ai, string>({
         //     query: (messages: MessageType[], id: string) => ({
