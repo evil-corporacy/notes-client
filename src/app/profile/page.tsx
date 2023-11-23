@@ -3,11 +3,15 @@ import {Button, Container, Divider, Input, LinearProgress, Typography} from '@mu
 import React, {useEffect, useState} from 'react';
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
-import {ExitToApp, Save} from "@mui/icons-material";
+import {ExitToApp} from "@mui/icons-material";
 import {useGetMeQuery} from "@/entities/user/api";
+import {UserApi} from "@/entities/user/api";
 import {useRouter} from "next/navigation";
+import {checkAuth} from "@/features/check-auth";
 
 const Page = () => {
+    checkAuth()
+
     const router = useRouter()
     // const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
     const [canSave, setCanSave] = useState<boolean>(false)
@@ -26,7 +30,9 @@ const Page = () => {
     const logOut = () => {
         localStorage.removeItem("access")
         localStorage.removeItem("refresh")
+        UserApi.util.resetApiState()
         router.replace("/")
+        window.location.reload()
     }
 
     return (
@@ -89,7 +95,7 @@ const Page = () => {
                 </div>
 
                 <div className="mt-10 flex justify-between">
-                    <Button disabled={canSave} endDecorator={<Save/>}>Сохранить</Button>
+                    {/*<Button disabled={canSave} endDecorator={<Save/>}>Сохранить</Button>*/}
                     <Button disabled={canSave} onClick={logOut} color="danger" endDecorator={<ExitToApp/>}>Выйти</Button>
                 </div>
             </Container>

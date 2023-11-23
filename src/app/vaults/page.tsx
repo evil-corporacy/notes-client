@@ -7,8 +7,11 @@ import CreateVault from "@/widgets/create-vault";
 import VaultList from "@/widgets/vault-list";
 import {useGetMyQuery} from "@/entities/vault/api";
 import {Vault} from "@/entities/vault/model";
+import {checkAuth} from "@/features/check-auth";
 
 const Page = () => {
+    checkAuth()
+
     const loading = false
     const {data} = useGetMyQuery(undefined)
     const vaults: Vault | undefined = data?.data

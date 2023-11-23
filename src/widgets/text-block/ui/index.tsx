@@ -10,7 +10,6 @@ import BasicList from "@/widgets/basic-list/ui";
 import NumList from "@/widgets/num-list/ui";
 import TodoList from "@/widgets/todo-list/ui";
 import TableBlock from "@/widgets/table/ui";
-import TitleIcon from '@mui/icons-material/Title';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import ChecklistIcon from '@mui/icons-material/Checklist';
@@ -51,7 +50,7 @@ const TextBlock = ({block, colors, readonly, handleDeleteBlock, handleChangeBloc
             title: "Обычный текст",
             type: "text",
             label: "text",
-            icon: <TitleIcon/>,
+            icon: "Text",
         },
         {
             title: "Маркированный список",
@@ -140,10 +139,10 @@ const TextBlock = ({block, colors, readonly, handleDeleteBlock, handleChangeBloc
     else return (
         <div className="relative" onMouseEnter={() => setMenuVisible(true)} onMouseLeave={() => setMenuVisible(false)}>
             <div className={`absolute -top-8 duration-300 ${menuVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
-                <ButtonGroup variant="soft" aria-label="neutral button group" sx={{ '--ButtonGroup-radius': '40px', '--ButtonGroup-background': "black" }}>
+                <ButtonGroup variant="soft" aria-label="neutral button group" sx={{ '--ButtonGroup-radius': '40px', '--ButtonGroup-background': colors ? colors[1] : "black" }}>
                     {showTypes()?.map((item, typeIndex: number) =>
                         <Tooltip key={typeIndex} title={item.title}>
-                            <IconButton onClick={() => changeType(item.type, index ? index : 0)}>
+                            <IconButton sx={{background: colors ? colors[1] : "black", color: colors ? colors[2] : "white"}} onClick={() => changeType(item.type, index ? index : 0)}>
                                 {item.icon}
                             </IconButton>
                     </Tooltip>)}

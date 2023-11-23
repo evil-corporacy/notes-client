@@ -5,11 +5,13 @@ import {ButtonGroup, CircularProgress, IconButton, Typography} from "@mui/joy";
 import TextBlock from "@/widgets/text-block/ui";
 import NavBar from "@/widgets/nav-bar/ui";
 import NoteEdit from "@/widgets/note-edit/ui";
-import TitleIcon from "@mui/icons-material/Title";
 import {useGetNoteByIdQuery} from "@/entities/note/api";
 import {updateNote} from "@/app/vaults/[vaultId]/notes/[noteId]/api";
+import {checkAuth} from "@/features/check-auth";
 
 const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
+    checkAuth()
+
     const [image, setImage] = useState<any>("http://localhost/media/backgrounds/cai-fang-xZgwNbcLBWM-unsplash.jpg");
 
     const {data} = useGetNoteByIdQuery(params.noteId)
@@ -95,7 +97,7 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
             title: "Обычный текст",
             type: "text",
             label: "text",
-            icon: <TitleIcon/>,
+            icon: "Text",
         },
     ]
 
@@ -124,9 +126,11 @@ const Page = ({params}: {params: {vaultId: string, noteId: string}}) => {
                     {note ? note.map((block: any, index: number) =>
                         <TextBlock index={index} handleChangeType={handleChangeType} handleChangeBlock={handleChangeBlock} handleDeleteBlock={handleDeleteBlock} key={block} block={block} colors={colors}/>
                     ) : ""}
-                    <ButtonGroup>
-                        {types.map((type, index: number) => <IconButton onClick={() => handleAddBlock(type.type)} key={index} sx={{background: colors ? colors[1] : "#FFFFFF", color: colors ? colors[2] : "#000000"}}>{type.icon}</IconButton>)}
-                    </ButtonGroup>
+                    <div className="w-full mt-2 opacity-0 duration-300 hover:opacity-100">
+                        <ButtonGroup>
+                            {types.map((type, index: number) => <IconButton onClick={() => handleAddBlock(type.type)} key={index} sx={{background: colors ? colors[1] : "#FFFFFF", color: colors ? colors[2] : "#000000"}}>{type.icon}</IconButton>)}
+                        </ButtonGroup>
+                    </div>
                 </div>
             </div>
             <NavBar params={params}/>
