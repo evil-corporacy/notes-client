@@ -84,7 +84,7 @@ const CreateVault = () => {
                                 })}/>
                             </Typography>
                         </FormLabel>
-                        <Checkbox label="Публичный волт" {...register("isPublic", {required: true})} variant="solid"/>
+                        <Checkbox label="Публичный волт" {...register("isPublic")} variant="solid"/>
                         <Button type="submit" disabled={loading}>Создать волт</Button>
                     </form>
                 </Sheet>
