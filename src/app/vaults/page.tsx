@@ -1,6 +1,6 @@
 "use client"
 
-import {Button, Container, Input} from '@mui/joy'
+import {Button, Container, Input, Typography} from '@mui/joy'
 import React from "react";
 import {Search} from "@mui/icons-material";
 import CreateVault from "@/widgets/create-vault";
@@ -22,13 +22,27 @@ const Page = () => {
                 <div className='my-10'>
                     <div className="flex flex-col gap-10 pt-10 mb-10">
                         <h1 className="text-6xl font-bold text-white">Твои волты</h1>
-                        <div className="flex mt-5 justify-between">
-                            <div className="flex gap-4">
-                                <Input placeholder="Поиск" variant="soft" endDecorator={<Search/>}/>
-                                <Button>Найти</Button>
-                            </div>
+                        {
+                            !loading && !vaults ?
+                                ""
+                                :
+                                <div className="flex mt-5 justify-between">
+                                    <div className="flex gap-4">
+                                        <Input placeholder="Поиск" variant="soft" endDecorator={<Search/>}/>
+                                        <Button>Найти</Button>
+                                    </div>
+                                    <CreateVault/>
+                                </div>
+                        }
+                        {!vaults && !loading ? <div className="flex gap-5 flex-col justify-center items-center h-96">
+                            <Typography level="h1">
+                                Тут как-то пусто...
+                            </Typography>
+                            <Typography level="h2">
+                                Создайте свой первый волт!
+                            </Typography>
                             <CreateVault/>
-                        </div>
+                        </div> : ""}
                         <VaultList loading={loading} data={vaults}/>
                     </div>
                 </div>
