@@ -4,8 +4,11 @@ import { useGetByIdQuery } from '@/entities/vault/api'
 import NavBar from '@/widgets/nav-bar/ui'
 import TagsList from '@/widgets/tags-list/ui'
 import { CircularProgress, Container, Typography } from '@mui/joy'
+import {checkAuth} from "@/features/check-auth";
 
 const Page = ({ params }: { params: { vaultId: string } }) => {
+	checkAuth()
+
 	const { data, isLoading } = useGetByIdQuery(params.vaultId)
 	const vault = data?.data
 

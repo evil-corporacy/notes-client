@@ -1,6 +1,5 @@
 import React from 'react';
 import Logo from "@/widgets/logo/ui";
-import CELogo from "../../../../public/logos/evil-corporacy-logo.svg";
 import NotesLogo from "../../../../public/logos/notes-logo.svg";
 import Link from "next/link";
 import {Container} from "@mui/joy";
@@ -18,16 +17,16 @@ const Header = () => {
                             <Link href={"/"}>
                                 <Logo logo={NotesLogo}/>
                             </Link>
-                            <Link href={"/"}>
-                                <Logo logo={CELogo}/>
-                            </Link>
+                            {/*<Link href={"/"}>*/}
+                            {/*    <Logo logo={CELogo}/>*/}
+                            {/*</Link>*/}
                         </div>
                         <Link href={"/vaults"}>
                             Твои волты
                         </Link>
-                        <Link href={"/vaults/search"}>
-                            Публичные волты
-                        </Link>
+                        {/*<Link href={"/vaults/search"}>*/}
+                        {/*    Публичные волты*/}
+                        {/*</Link>*/}
                     </div>
 
                     <ProfileButton/>

@@ -29,7 +29,6 @@ const Heading1 = ({index, data, colors, readonly, handleChangeBlock}: {index: nu
             variant="plain"
             sx={{
                 background: "transparent",
-                border: "none",
                 fontSize: "2.25rem",
                 lineHeight: "2.5rem",
                 fontWeight: "700",
