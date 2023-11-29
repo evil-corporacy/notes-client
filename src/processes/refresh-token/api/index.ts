@@ -17,7 +17,7 @@ export const refreshToken = async (refreshToken: string): Promise<any> => {
 
         const refreshInterval = setInterval(async (): Promise<any> => {
             await tokenRefresher(refreshToken)
-        },1000 * 60);
+        },1000 * 10 * 60);
 
         return () => clearInterval(refreshInterval);
     } catch (e) {
